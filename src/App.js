@@ -59,10 +59,10 @@ deleteAccount("lbj@gmail.com");
 console.log(accounts);
 
 // withdraw
-const withdraw = (email, withdrawAmt) => { // ! email or account, not yet sure
+const withdraw = (email, amt) => { // ! email or account, not yet sure
   accounts.map(account => {
     if (account.email.toLowerCase() === email.toLowerCase()) {
-      account.balance -= withdrawAmt;
+      account.balance -= amt;
       return account;
     };
   });
@@ -74,10 +74,10 @@ console.log(accounts);
 
 
 // deposit
-const deposit = (email, depositAmt) => { // ! email or account, not yet sure
+const deposit = (email, amt) => { // ! email or account, not yet sure
   accounts.map(account => {
     if (account.email.toLowerCase() === email.toLowerCase()) {
-      account.balance += depositAmt;
+      account.balance += amt;
       return account;
     };
   });
@@ -88,7 +88,25 @@ deposit("lkiu@gmail.com", 1000);
 console.log(accounts);
 
 // transfer
+const transfer = (emailFrom, emailTo, amt) => { // ! email or account, not yet sure
+  accounts.map(account => {
+    if (account.email.toLowerCase() === emailFrom.toLowerCase()) {
+      account.balance -= amt;
+      return account;
+    };
+  });
 
+  accounts.map(account => {
+    if (account.email.toLowerCase() === emailTo.toLowerCase()) {
+      account.balance += amt;
+      return account;
+    };
+  });
+}
+
+  // test transfer
+  transfer("lkiu@gmail.com", "elonmusk@gmail.com", 99);
+  console.log(accounts);
 
 
 const App = () => {
