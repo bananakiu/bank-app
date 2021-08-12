@@ -59,6 +59,19 @@ deleteAccount("lbj@gmail.com");
 console.log(accounts);
 
 // withdraw
+const withdraw = (email, withdrawAmt) => { // ! email or account, not yet sure
+  accounts.map(account => {
+    if (account.email.toLowerCase() === email.toLowerCase()) {
+      account.balance -= withdrawAmt;
+      return account;
+    };
+  });
+}
+
+  // test withdraw
+withdraw("lkiu@gmail.com", 1);
+console.log(accounts);
+
 
 // deposit
 
