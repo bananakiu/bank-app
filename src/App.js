@@ -74,6 +74,18 @@ console.log(accounts);
 
 
 // deposit
+const deposit = (email, depositAmt) => { // ! email or account, not yet sure
+  accounts.map(account => {
+    if (account.email.toLowerCase() === email.toLowerCase()) {
+      account.balance += depositAmt;
+      return account;
+    };
+  });
+}
+
+  // test deposit
+deposit("lkiu@gmail.com", 1000);
+console.log(accounts);
 
 // transfer
 
