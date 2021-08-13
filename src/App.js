@@ -1,5 +1,6 @@
-import LoginPage from './components/login/loginpage'
 import NavBar from './components/common/navbar';
+import LoginPage from './components/login/loginpage';
+import AccountsDisplay from './components/accounts/accountsDisplay';
 
 // js logic
 // initialize
@@ -120,7 +121,8 @@ const App = () => {
         <NavBar/>
       </header>
       <main>
-        <LoginPage />
+        {/* <LoginPage /> */}
+        <AccountsDisplay />
       </main>
     </>
   );
