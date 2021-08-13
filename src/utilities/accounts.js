@@ -1,0 +1,62 @@
+// add accounts
+const addAccount = (accounts, idGenerator, holderName, email, initialValue) => {
+    // TODO: check if email exists, check if balance is negative, name has to start with string
+    // push to accounts
+    accounts.push(
+        {
+            id: idGenerator,
+            email: email,
+            name: holderName,
+            balance: initialValue
+        }
+    );
+
+    // increment data
+    idGenerator++;
+
+    return [accounts, idGenerator];
+};
+
+// delete accounts
+const deleteAccount = (accounts, email) => {
+    return accounts.filter(account => account.email.toLowerCase() !== email.toLowerCase());
+};  
+
+// withdraw
+const withdraw = (accounts, email, amt) => { // ! email or account, not yet sure
+    return accounts.map(account => {
+        if (account.email.toLowerCase() === email.toLowerCase()) {
+            account.balance -= amt;
+            return account;
+        };
+    });
+};
+
+// deposit
+const deposit = (accounts, email, amt) => { // ! email or account, not yet sure
+    return accounts.map(account => {
+        if (account.email.toLowerCase() === email.toLowerCase()) {
+            account.balance += amt;
+            return account;
+        };
+    });
+};
+
+// transfer
+const transfer = (accounts, emailFrom, emailTo, amt) => { // ! email or account, not yet sure
+    accounts.map(account => {
+        if (account.email.toLowerCase() === emailFrom.toLowerCase()) {
+            account.balance -= amt;
+            return account;
+        };
+    });
+    
+    accounts.map(account => {
+        if (account.email.toLowerCase() === emailTo.toLowerCase()) {
+            account.balance += amt;
+            return account;
+        };
+    });
+
+    return accounts;
+}
