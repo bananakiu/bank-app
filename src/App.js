@@ -1,6 +1,8 @@
 import NavBar from './components/common/navbar';
-import LoginPage from './components/login/loginpage';
+import DashboardPage from './components/dashboard/dashboardPage';
 import AccountsDisplay from './components/accounts/accountsDisplay';
+import RecordsPage from './components/records/recordsPage';
+import LoginPage from './components/login/loginPage';
 import {addAccount, deleteAccount, withdraw, deposit, transfer} from './utils/accounts'
 import React, { useState } from 'react';
 
@@ -60,8 +62,10 @@ const App = () => {
         />
       </header>
       <main>
-        <LoginPage isLoginOpen={isLoginOpen} />
+        <DashboardPage isDashboardOpen={isDashboardOpen} />
         <AccountsDisplay accounts={accounts} setAccounts={setAccounts} isAccountsOpen={isAccountsOpen} />
+        <RecordsPage isRecordsOpen={isRecordsOpen} />
+        <LoginPage isLoginOpen={isLoginOpen} />
       </main>
     </>
   );
