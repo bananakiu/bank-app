@@ -1,6 +1,6 @@
 import NavBar from './components/common/navbar';
 import DashboardPage from './components/dashboard/dashboardPage';
-import AccountsDisplay from './components/accounts/accountsDisplay';
+import AccountsPage from './components/accounts/accountsPage';
 import RecordsPage from './components/records/recordsPage';
 import LoginPage from './components/login/loginPage';
 import {addAccount, deleteAccount, withdraw, deposit, transfer} from './utils/accounts'
@@ -63,7 +63,7 @@ const App = () => {
       </header>
       <main>
         <DashboardPage isDashboardOpen={isDashboardOpen} />
-        <AccountsDisplay accounts={accounts} setAccounts={setAccounts} isAccountsOpen={isAccountsOpen} />
+        <AccountsPage accounts={accounts} setAccounts={setAccounts} isAccountsOpen={isAccountsOpen} />
         <RecordsPage isRecordsOpen={isRecordsOpen} />
         <LoginPage isLoginOpen={isLoginOpen} />
       </main>
