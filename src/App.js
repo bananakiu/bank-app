@@ -3,9 +3,7 @@ import DashboardPage from './components/dashboard/dashboardPage';
 import AccountsPage from './components/accounts/accountsPage';
 import RecordsPage from './components/records/recordsPage';
 import LoginPage from './components/login/loginPage';
-import {addAccount, deleteAccount, withdraw, deposit, transfer} from './utils/accounts'
 import React, { useState } from 'react';
-
 
 // App
 const App = () => {
@@ -63,7 +61,13 @@ const App = () => {
       </header>
       <main>
         <DashboardPage isDashboardOpen={isDashboardOpen} />
-        <AccountsPage accounts={accounts} setAccounts={setAccounts} isAccountsOpen={isAccountsOpen} />
+        <AccountsPage
+          accounts={accounts}
+          setAccounts={setAccounts}
+          idGenerator={idGenerator}
+          setIdGenerator={setIdGenerator}
+          isAccountsOpen={isAccountsOpen}
+        />
         <RecordsPage isRecordsOpen={isRecordsOpen} />
         <LoginPage isLoginOpen={isLoginOpen} />
       </main>

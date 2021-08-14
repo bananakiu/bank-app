@@ -1,5 +1,5 @@
 // add accounts
-const addAccount = (accounts, idGenerator, holderName, email, initialValue) => {
+export const addAccount = (accounts, idGenerator, holderName, email, initialValue) => {
     // TODO: check if email exists, check if balance is negative, name has to start with string
     // push to accounts
     accounts.push(
@@ -18,12 +18,12 @@ const addAccount = (accounts, idGenerator, holderName, email, initialValue) => {
 };
 
 // delete accounts
-const deleteAccount = (accounts, email) => {
+export const deleteAccount = (accounts, email) => {
     return accounts.filter(account => account.email.toLowerCase() !== email.toLowerCase());
 };  
 
 // withdraw
-const withdraw = (accounts, email, amt) => { // ! email or account, not yet sure
+export const withdraw = (accounts, email, amt) => { // ! email or account, not yet sure
     return accounts.map(account => {
         if (account.email.toLowerCase() === email.toLowerCase()) {
             account.balance -= amt;
@@ -33,7 +33,7 @@ const withdraw = (accounts, email, amt) => { // ! email or account, not yet sure
 };
 
 // deposit
-const deposit = (accounts, email, amt) => { // ! email or account, not yet sure
+export const deposit = (accounts, email, amt) => { // ! email or account, not yet sure
     return accounts.map(account => {
         if (account.email.toLowerCase() === email.toLowerCase()) {
             account.balance += amt;
@@ -43,7 +43,7 @@ const deposit = (accounts, email, amt) => { // ! email or account, not yet sure
 };
 
 // transfer
-const transfer = (accounts, emailFrom, emailTo, amt) => { // ! email or account, not yet sure
+export const transfer = (accounts, emailFrom, emailTo, amt) => { // ! email or account, not yet sure
     accounts.map(account => {
         if (account.email.toLowerCase() === emailFrom.toLowerCase()) {
             account.balance -= amt;

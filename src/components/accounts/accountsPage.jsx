@@ -1,7 +1,18 @@
 import AccountRow from "./accountRow";
 import Button from "../common/button";
+import {addAccount, deleteAccount, withdraw, deposit, transfer} from './../../utils/accounts';
 
-const AccountsPage = ({accounts, setAccounts, isAccountsOpen}) => {
+const AccountsPage = ({accounts, setAccounts, idGenerator, setIdGenerator, isAccountsOpen}) => {
+    // functions
+    const addAccountOnClick = (holderName, email, initialValue) => {
+        return () => {
+            let [newAccounts, newIdGenerator] = addAccount(accounts, idGenerator, holderName, email, initialValue);
+            setAccounts(newAccounts);
+            setIdGenerator(newIdGenerator);
+        }
+    }
+
+    // render
     return <>
         <div className={`
         flex justify-center items-start text-center my-4 mx-8
@@ -24,6 +35,7 @@ const AccountsPage = ({accounts, setAccounts, isAccountsOpen}) => {
                     color="bg-green-500"
                     hoverColor="hover:bg-green-600"
                     otherStyling="mx-4"
+                    onClickFunction={addAccountOnClick("Leandre Noel Kiu", "lkiu@gmail.com", 100000)}
                 />
             </div>
             <div id="accounts-list" className="
