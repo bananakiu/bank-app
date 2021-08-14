@@ -1,4 +1,4 @@
-const LoginPage = () => {
+const LoginPage = ({isOpen}) => {
     return <>
     <div className="
     flex justify-center items-center

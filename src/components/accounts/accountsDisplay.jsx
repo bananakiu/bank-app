@@ -1,6 +1,6 @@
 import AccountRow from "./accountRow";
 
-const AccountsDisplay = () => {
+const AccountsDisplay = ({accounts, setAccounts}) => {
     return <>
         <div className="
         flex justify-center items-start text-center my-4 mx-8
@@ -17,10 +17,8 @@ const AccountsDisplay = () => {
             flex-auto
             bg-white
             ">
-                Accounts List
-                <AccountRow name="Leandre" email="leandrenoelkiu@gmail.com" balance={123} />
-                <AccountRow name="Leandre" email="leandrenoelkiu@gmail.com" balance={1234} />
-                <AccountRow name="Leandre" email="leandrenoelkiu@gmail.com" balance={12345} />
+                <h1 className="mb-4">Accounts List</h1>
+                {accounts.map(account => <AccountRow name={account.name} email={account.email} balance={account.balance} />)};
             </div>
         </div>
     </>
