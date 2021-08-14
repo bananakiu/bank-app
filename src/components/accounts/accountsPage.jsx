@@ -30,7 +30,7 @@ const AccountsPage = ({accounts, setAccounts, idGenerator, setIdGenerator, isAcc
                 ">Accounts</h1>
                 <Button
                     content={<>
-                        <i class="fas fa-plus text-xs"></i> <span className="text-sm">Add</span>
+                        <i className="fas fa-plus text-xs"></i> <span className="text-sm">Add</span>
                     </>}
                     color="bg-green-500"
                     hoverColor="hover:bg-green-600"
