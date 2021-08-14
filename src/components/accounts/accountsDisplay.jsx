@@ -1,11 +1,11 @@
 import AccountRow from "./accountRow";
 
-const AccountsDisplay = ({accounts, setAccounts}) => {
+const AccountsDisplay = ({accounts, setAccounts, isAccountsOpen}) => {
     return <>
-        <div className="
+        <div className={`
         flex justify-center items-start text-center my-4 mx-8
-        pt-6
-        ">
+        pt-6 ${isAccountsOpen ? "" : "hidden"}
+        `}>
             <div id="accounts-utility-panel" className="
             w-80 h-96 mr-4
             bg-white

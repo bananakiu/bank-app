@@ -1,6 +1,27 @@
 import bannerLogo from './../../assets/banner-logo-white.png';
 
-const NavBar = () => {
+const NavBar = ({
+    isDashboardOpen,
+    setIsDashboardOpen,
+    isAccountsOpen,
+    setIsAccountsOpen,
+    isRecordsOpen,
+    setIsRecordsOpen,
+    isLoginOpen,
+    setIsLoginOpen,
+    isSignupOpen,
+    setIsSignupOpen
+}) => {
+    const switchPageTo = (page) => {
+        return () => {
+            setIsDashboardOpen(page==="dashboard" ? true : false);
+            setIsAccountsOpen(page==="accounts" ? true : false);
+            setIsRecordsOpen(page==="records" ? true : false);
+            setIsLoginOpen(page==="login" ? true : false);
+            setIsSignupOpen(page==="signup" ? true : false);
+        }
+    }
+
     return <>
         <nav className="
         flex justify-between items-center
@@ -19,9 +40,9 @@ const NavBar = () => {
                 text-center
                 h-full
                 ">
-                    <a className="flex-1 text-lg hover:bg-blue-600 py-4 px-6">Dashboard</a>
-                    <a className="flex-1 text-lg hover:bg-blue-600 py-4 px-6">Accounts</a>
-                    <a className="flex-1 text-lg hover:bg-blue-600 py-4 px-6">Records</a>
+                    <a className="flex-1 text-lg hover:bg-blue-600 py-4 px-6" onClick={switchPageTo("dashboard")}>Dashboard</a>
+                    <a className="flex-1 text-lg hover:bg-blue-600 py-4 px-6" onClick={switchPageTo("accounts")}>Accounts</a>
+                    <a className="flex-1 text-lg hover:bg-blue-600 py-4 px-6" onClick={switchPageTo("records")}>Records</a>
                 </div>
             </div>
             <div id="navbar-right" className="flex items-center justify-center h-full">

@@ -1,8 +1,9 @@
-const LoginPage = ({isOpen}) => {
+const LoginPage = ({isLoginOpen}) => {
     return <>
-    <div className="
+    <div className={`
     flex justify-center items-center
-    ">
+    ${isLoginOpen ? "" : "hidden"}
+    `}>
         {/* Login Menu */}
         <form action="" className="
         bg-white shadow-md rounded px-8 pt-6 pb-8

@@ -37,18 +37,31 @@ const App = () => {
   const [isLoginOpen, setIsLoginOpen] = useState(false);
   const [isSignupOpen, setIsSignupOpen] = useState(false);
   
-  console.log(accounts);
-
   // return/render page
   return (
     <>
       <header>
         {/* turn into component */}
-        <NavBar/>
+        <NavBar
+          isDashboardOpen={isDashboardOpen}
+          setIsDashboardOpen={setIsDashboardOpen}
+
+          isAccountsOpen={isAccountsOpen}
+          setIsAccountsOpen={setIsAccountsOpen}
+
+          isRecordsOpen={isRecordsOpen}
+          setIsRecordsOpen={setIsRecordsOpen}
+
+          isLoginOpen={isLoginOpen}
+          setIsLoginOpen={setIsLoginOpen}
+
+          isSignupOpen={isSignupOpen}
+          setIsSignupOpen={setIsSignupOpen}
+        />
       </header>
       <main>
-        <LoginPage isOpen={loginIsOpen} />
-        <AccountsDisplay accounts={accounts} setAccounts={setAccounts} />
+        <LoginPage isLoginOpen={isLoginOpen} />
+        <AccountsDisplay accounts={accounts} setAccounts={setAccounts} isAccountsOpen={isAccountsOpen} />
       </main>
     </>
   );
