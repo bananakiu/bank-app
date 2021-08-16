@@ -3,6 +3,7 @@ import DashboardPage from './components/dashboard/dashboardPage';
 import AccountsPage from './components/accounts/accountsPage';
 import RecordsPage from './components/records/recordsPage';
 import LoginPage from './components/login/loginPage';
+import { addAccount } from './utils/accounts';
 import React, { useState } from 'react';
 
 // App
@@ -31,12 +32,52 @@ const App = () => {
       },
     ]
   );
+
   const [isDashboardOpen, setIsDashboardOpen] = useState(false);
   const [isAccountsOpen, setIsAccountsOpen] = useState(true);
   const [isRecordsOpen, setIsRecordsOpen] = useState(false);
   const [isLoginOpen, setIsLoginOpen] = useState(false);
   const [isSignupOpen, setIsSignupOpen] = useState(false);
+
+  const [newAccountName, setNewAccountName] = useState("");
+  const [newEmail, setNewEmail] = useState();
+  const [newAccountType, setNewAccountType] = useState();
+  const [newInitialAmount, setNewInitialAmount] = useState();
   
+  // functions (TEMP)
+  const handleNewAccountNameChange = (event) => {
+    setNewAccountName(event.target.value);
+  }
+
+  const handleNewEmailChange = (event) => {
+    setNewEmail(event.target.value);
+  }
+
+  const handleNewAccountTypeChange = (event) => {
+    setNewAccountType(event.target.value);
+  }
+
+  const handleNewInitialAmountChange = (event) => {
+    setNewInitialAmount(event.target.value);
+  }
+
+  const handleNewAccountSubmit = (event) => {
+    // prevent refresh
+    event.preventDefault();
+
+    // add accounts
+    let [newAccounts, newIdGenerator] = addAccount(accounts, idGenerator, newAccountName, newEmail, newInitialAmount);
+    setAccounts(newAccounts);
+    setIdGenerator(newIdGenerator);
+
+    // reset values
+    setNewAccountName("");
+    setNewEmail("");
+    setNewAccountType("");
+    setNewInitialAmount("");
+  }
+  
+
   // return/render page
   return (
     <>
@@ -60,6 +101,45 @@ const App = () => {
         />
       </header>
       <main>
+        {/* forms test */}
+        <section className="
+        flex justify-center items-start
+        text-center
+        w-full
+        bg-smoke-light
+        ">
+          <form onSubmit={handleNewAccountSubmit} className="
+          py-4 px-6 mt-8 mb-4 mx-8
+          border-gray-150 border-2 rounded-lg
+          transition duration-200
+          ">
+            <div>
+              <label>Account Name</label>
+              <input type="text" value={newAccountName} onChange={handleNewAccountNameChange} required className="border-2"/>
+            </div>
+            <div>
+              <label>Email</label>
+              <input type="email" value={newEmail} onChange={handleNewEmailChange} required className="border-2"/>
+            </div>
+            <div>
+              <label>Account Type</label>
+              <select value={newAccountType} onChange={handleNewAccountTypeChange} required className="border-2">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+              </select> 
+            </div>
+            <div>
+              <label>Starting Amount</label>
+              <input type="number" value={newInitialAmount} required onChange={handleNewInitialAmountChange} className="border-2"/>
+            </div>
+            <div>
+              <button className="border-2">Create</button>
+            </div>
+
+          </form>
+        </section>
+        
         <DashboardPage isDashboardOpen={isDashboardOpen} />
         <AccountsPage
           accounts={accounts}
