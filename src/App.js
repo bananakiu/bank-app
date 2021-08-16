@@ -5,6 +5,7 @@ import RecordsPage from './components/records/recordsPage';
 import LoginPage from './components/login/loginPage';
 import { addAccount } from './utils/accounts';
 import React, { useState } from 'react';
+import Button from './components/common/button';
 
 // App
 const App = () => {
@@ -112,29 +113,37 @@ const App = () => {
           py-4 px-6 mt-8 mb-4 mx-8
           border-gray-150 border-2 rounded-lg
           transition duration-200
+          flex flex-col justify-center
           ">
-            <div>
+            <div className="flex flex-col mb-4">
               <label>Account Name</label>
-              <input type="text" value={newAccountName} onChange={handleNewAccountNameChange} required className="border-2"/>
+              <input type="text" value={newAccountName} onChange={handleNewAccountNameChange} required className="form-input rounded-lg"/>
             </div>
-            <div>
+            <div className="flex flex-col mb-4">
               <label>Email</label>
-              <input type="email" value={newEmail} onChange={handleNewEmailChange} required className="border-2"/>
+              <input type="email" value={newEmail} onChange={handleNewEmailChange} required className="form-input rounded-lg"/>
             </div>
-            <div>
+            <div className="flex flex-col mb-4">
               <label>Account Type</label>
-              <select value={newAccountType} onChange={handleNewAccountTypeChange} required className="border-2">
+              <select value={newAccountType} onChange={handleNewAccountTypeChange} required className="form-select rounded-lg">
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
               </select> 
             </div>
-            <div>
+            <div className="flex flex-col mb-6">
               <label>Starting Amount</label>
-              <input type="number" value={newInitialAmount} required onChange={handleNewInitialAmountChange} className="border-2"/>
+              <input type="number" value={newInitialAmount} required onChange={handleNewInitialAmountChange} className="form-input rounded-lg"/>
             </div>
             <div>
-              <button className="border-2">Create</button>
+              <Button
+                content={<>
+                    <i className="fas fa-plus text-xs"></i> <span className="text-sm">Create</span>
+                </>}
+                color="bg-green-500"
+                hoverColor="hover:bg-green-600"
+                otherStyling="w-3/5"
+              />
             </div>
 
           </form>
