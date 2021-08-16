@@ -40,10 +40,14 @@ const App = () => {
   const [isLoginOpen, setIsLoginOpen] = useState(false);
   const [isSignupOpen, setIsSignupOpen] = useState(false);
 
+  const [isAddAccountModalOpen, setIsAddAccountModalOpen] = useState(false);
+  const [isActAccountModalOpen, setIsActAccountModalOpen] = useState(true);
+
   const [newAccountName, setNewAccountName] = useState("");
   const [newEmail, setNewEmail] = useState();
   const [newAccountType, setNewAccountType] = useState();
   const [newInitialAmount, setNewInitialAmount] = useState();
+
 
   // return/render page
   return (
@@ -84,6 +88,11 @@ const App = () => {
           setNewAccountType={setNewAccountType}
           newInitialAmount={newInitialAmount}
           setNewInitialAmount={setNewInitialAmount}
+
+          isAddAccountModalOpen={isAddAccountModalOpen}
+          setIsAddAccountModalOpen={setIsAddAccountModalOpen}
+          isActAccountModalOpen={isActAccountModalOpen}
+          setIsActAccountModalOpen={setIsActAccountModalOpen}
         />
         <RecordsPage isRecordsOpen={isRecordsOpen} />
         <LoginPage isLoginOpen={isLoginOpen} />

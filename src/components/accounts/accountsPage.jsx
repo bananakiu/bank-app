@@ -1,7 +1,7 @@
 import AccountRow from "./accountRow";
 import Button from "../common/button";
 import AddAccountModal from "./addAccountModal";
-import {addAccount} from './../../utils/accounts';
+import ActAccountModal from "./actAccountModal";
 
 const AccountsPage = ({
     accounts,
@@ -19,14 +19,16 @@ const AccountsPage = ({
     setNewAccountType,
     newInitialAmount,
     setNewInitialAmount,
+
+    // modals
+    isAddAccountModalOpen,
+    setIsAddAccountModalOpen,
+    isActAccountModalOpen,
+    setIsActAccountModalOpen,
 }) => {
     // functions
-    const addAccountOnClick = (holderName, email, initialValue) => {
-        return () => {
-            let [newAccounts, newIdGenerator] = addAccount(accounts, idGenerator, holderName, email, initialValue);
-            setAccounts(newAccounts);
-            setIdGenerator(newIdGenerator);
-        }
+    const handleAddAccountOnClick = () => {
+        setIsAddAccountModalOpen(true);
     }
 
     // render
@@ -53,7 +55,7 @@ const AccountsPage = ({
                     color="bg-green-500"
                     hoverColor="hover:bg-green-600"
                     otherStyling="mx-4"
-                    onClickFunction={addAccountOnClick("Leandre Noel Kiu", "lkiu@gmail.com", 100000)}
+                    onClickFunction={handleAddAccountOnClick}
                 />
             </div>
             <div id="accounts-list" className="
@@ -79,6 +81,20 @@ const AccountsPage = ({
             setNewAccountType={setNewAccountType}
             newInitialAmount={newInitialAmount}
             setNewInitialAmount={setNewInitialAmount}
+
+            isAddAccountModalOpen={isAddAccountModalOpen}
+            setIsAddAccountModalOpen={setIsAddAccountModalOpen}
+        />
+
+        {/* act account modal */}
+        <ActAccountModal
+            accounts={accounts}
+            setAccounts={setAccounts}
+            idGenerator={idGenerator}
+            setIdGenerator={setIdGenerator}
+
+            isActAccountModalOpen={isActAccountModalOpen}
+            setIsActAccountModalOpen={setIsActAccountModalOpen}
         />
     </>
 };
