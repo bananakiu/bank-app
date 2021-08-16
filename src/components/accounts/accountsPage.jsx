@@ -1,8 +1,25 @@
 import AccountRow from "./accountRow";
 import Button from "../common/button";
-import {addAccount, deleteAccount, withdraw, deposit, transfer} from './../../utils/accounts';
+import AddAccountModal from "./addAccountModal";
+import {addAccount} from './../../utils/accounts';
 
-const AccountsPage = ({accounts, setAccounts, idGenerator, setIdGenerator, isAccountsOpen}) => {
+const AccountsPage = ({
+    accounts,
+    setAccounts,
+    idGenerator,
+    setIdGenerator, 
+    isAccountsOpen,
+
+    // form states
+    newAccountName,
+    setNewAccountName,
+    newEmail,
+    setNewEmail,
+    newAccountType,
+    setNewAccountType,
+    newInitialAmount,
+    setNewInitialAmount,
+}) => {
     // functions
     const addAccountOnClick = (holderName, email, initialValue) => {
         return () => {
@@ -14,6 +31,7 @@ const AccountsPage = ({accounts, setAccounts, idGenerator, setIdGenerator, isAcc
 
     // render
     return <>
+        {/* accounts page */}
         <div className={`
         flex justify-center items-start text-center my-4 mx-8
         pt-6 ${isAccountsOpen ? "" : "hidden"}
@@ -45,6 +63,23 @@ const AccountsPage = ({accounts, setAccounts, idGenerator, setIdGenerator, isAcc
                 {accounts.map(account => <AccountRow name={account.name} email={account.email} balance={account.balance} />)}
             </div>
         </div>
+
+        {/* add account modal */}
+        <AddAccountModal
+            accounts={accounts}
+            setAccounts={setAccounts}
+            idGenerator={idGenerator}
+            setIdGenerator={setIdGenerator}
+
+            newAccountName={newAccountName}
+            setNewAccountName={setNewAccountName}
+            newEmail={newEmail}
+            setNewEmail={setNewEmail}
+            newAccountType={newAccountType}
+            setNewAccountType={setNewAccountType}
+            newInitialAmount={newInitialAmount}
+            setNewInitialAmount={setNewInitialAmount}
+        />
     </>
 };
 
