@@ -1,6 +1,11 @@
 import { addAccount } from './../../utils/accounts';
 import Button from './../common/button';
 
+// TODO: x-button to close modal
+// TODO: click out to close modal
+// TODO: esc key to close modal
+// TODO: understand what fixed [z-10 inset-0 overflow-y-auto] classes do in Tailwind CSS
+
 const AddAccountModal = ({
     // data states
     accounts,
@@ -17,6 +22,10 @@ const AddAccountModal = ({
     setNewAccountType,
     newInitialAmount,
     setNewInitialAmount,
+
+    // modal open
+    isAddAccountModalOpen,
+    setIsAddAccountModalOpen,
 }) => {
     // functions for the form
     const handleNewAccountNameChange = (event) => {
@@ -49,21 +58,26 @@ const AddAccountModal = ({
         setNewEmail("");
         setNewAccountType("");
         setNewInitialAmount("");
+
+        // close modal
+        setIsAddAccountModalOpen(false)
     }
 
     // render
     return <>
-        <section className="
-        flex justify-center items-start
-        text-center
-        w-full
-        bg-smoke-light
-        ">
+        <section className={`
+        h-screen w-full fixed z-10 inset-0 overflow-y-auto
+        flex justify-center items-center text-center
+        bg-black bg-opacity-50
+        ${isAddAccountModalOpen ? "" : "hidden"}
+        `}>
             <form onSubmit={handleNewAccountSubmit} className="
             py-4 px-6 mt-8 mb-4 mx-8
             border-gray-150 border-2 rounded-lg
             transition duration-200
             flex flex-col justify-center
+            bg-white
+            w-96
             ">
                 <div className="flex flex-col mb-4">
                     <label>Account Name</label>
