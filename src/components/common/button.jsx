@@ -3,6 +3,7 @@ const Button = ({content, color, hoverColor, otherStyling, onClickFunction}) => 
     ${color} ${hoverColor} rounded-3xl
     text-white
     py-2 px-4
+    transition duration-200
     ${otherStyling}
     `}>
         {content}

@@ -40,7 +40,7 @@ const NavBar = ({
                 text-center
                 h-full
                 ">
-                    <a className="flex-1 text-lg hover:bg-blue-600 py-4 px-6" onClick={switchPageTo("dashboard")}>Dashboard</a>
+                    <a className="flex-1 text-lg hover:bg-blue-600 py-4 px-6 transition duration-200" onClick={switchPageTo("dashboard")}>Dashboard</a>
                     <a className="flex-1 text-lg hover:bg-blue-600 py-4 px-6" onClick={switchPageTo("accounts")}>Accounts</a>
                     <a className="flex-1 text-lg hover:bg-blue-600 py-4 px-6" onClick={switchPageTo("records")}>Records</a>
                 </div>
