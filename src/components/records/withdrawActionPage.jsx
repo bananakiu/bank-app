@@ -29,7 +29,7 @@ const WithdrawActionPage = ({
     `}>
         <div className="flex flex-col mb-4">
             <label htmlFor="withdraw-amount">Withdraw Amount (Php)</label>
-            <input value={actWithdrawAmount} onChange={handleActWithdrawAmountChange} type="number" id="withdraw-amount" required className="form-input rounded-lg w-72"/>
+            <input value={actWithdrawAmount} onChange={handleActWithdrawAmountChange} type="number" id="withdraw-amount" required={action==="withdraw" ? true : false} className="form-input rounded-lg w-72"/>
         </div>
         
         {/* submit button */}

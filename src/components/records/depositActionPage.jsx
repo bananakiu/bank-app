@@ -34,7 +34,7 @@ const DepositActionPage = ({
     `}>
         <div className="flex flex-col mb-4">
             <label htmlFor="deposit-amount">Deposit Amount (Php)</label>
-            <input value={actDepositAmount} onChange={handleActDepositAmountChange} type="number" id="deposit-amount" required className="form-input rounded-lg w-72"/>
+            <input value={actDepositAmount} onChange={handleActDepositAmountChange} type="number" id="deposit-amount" required={action==="deposit" ? true : false} className="form-input rounded-lg w-72"/>
         </div>
         
 

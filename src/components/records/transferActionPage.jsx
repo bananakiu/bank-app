@@ -41,7 +41,7 @@ const TransferActionPage = ({
                 list="transfer-to-account-list"
                 name="transfer-to-account"
                 id="transfer-to-account"
-                required
+                required={action==="transfer" ? true : false}
                 className="
                 form-select truncate rounded-lg
                 w-72
@@ -57,7 +57,7 @@ const TransferActionPage = ({
 
         <div className="flex flex-col mb-4">
             <label htmlFor="transfer-amount">Transfer Amount (Php)</label>
-            <input value={actTransferAmount} onChange={handleActTransferAmountChange} type="number" id="transfer-amount" required className="form-input rounded-lg w-72"/>
+            <input value={actTransferAmount} onChange={handleActTransferAmountChange} type="number" id="transfer-amount" required={action==="transfer" ? true : false} className="form-input rounded-lg w-72"/>
         </div>
         
         {/* submit button */}
