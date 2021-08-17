@@ -22,6 +22,7 @@ const DepositActionPage = ({
     flex flex-col justify-center items-center
     `}>
         <div className="flex flex-col mb-4">
+            {/* TODO: remove repetitive datalist dropdown icon */}
             <label htmlFor="deposit-account">Account Name</label>
             <input list="deposit-account-list" name="deposit-account" id="deposit-account" required className="
             form-select truncate rounded-lg
