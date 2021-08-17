@@ -3,7 +3,7 @@ const dashboardPage = ({isDashboardOpen}) => {
         <div className={`
         pt-6 ${isDashboardOpen ? "" : "hidden"}
         `}>
-            Dashboard Page
+            <div>Dashboard Page (Under construction...)</div>
         </div>
     </>
 };

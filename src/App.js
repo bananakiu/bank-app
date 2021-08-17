@@ -40,7 +40,7 @@ const App = () => {
   const [isSignupOpen, setIsSignupOpen] = useState(false);
 
   const [isAddAccountModalOpen, setIsAddAccountModalOpen] = useState(false);
-  const [isActAccountModalOpen, setIsActAccountModalOpen] = useState(true);
+  const [isActAccountModalOpen, setIsActAccountModalOpen] = useState(false);
 
   const [newAccountName, setNewAccountName] = useState("");
   const [newEmail, setNewEmail] = useState("");

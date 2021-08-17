@@ -3,8 +3,23 @@ const formatter = new Intl.NumberFormat('en-US', {
     currency: 'PHP'
 });
 
-const AccountRow = ({name, email, balance}) => {
-    return <div className="
+const AccountRow = ({
+    name,
+    email,
+    balance,
+    // accountType,
+
+    setIsActAccountModalOpen,
+    setActAccountName,
+}) => {
+    // handlers
+    const handleAccountRowClick = () => {
+        setActAccountName(email);
+        setIsActAccountModalOpen(true);
+    }
+
+    // render
+    return <div onClick={handleAccountRowClick} className="
     flex justify-between align-center
     py-4 px-6 mb-4
     border-gray-150 border-2 rounded-lg

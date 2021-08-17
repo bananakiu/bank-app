@@ -109,6 +109,7 @@ const ActAccountModal = ({
                         {/* TODO: remove repetitive datalist dropdown icon */}
                         <label htmlFor="action-account">Account</label>
                         <input
+                            value={actAccountName}
                             onChange={handleActAccountNameChange}
                             list="action-account-list"
                             name="action-account"

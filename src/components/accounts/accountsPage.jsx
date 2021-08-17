@@ -76,7 +76,15 @@ const AccountsPage = ({
             flex-auto
             bg-white
             ">
-                {accounts.map(account => <AccountRow name={account.name} email={account.email} balance={account.balance} />)}
+                {accounts.map(account => <AccountRow
+                    name={account.name}
+                    email={account.email}
+                    balance={account.balance}
+                    // accountType={account.type}
+                    
+                    setIsActAccountModalOpen={setIsActAccountModalOpen}
+                    setActAccountName={setActAccountName}
+                />)}
             </div>
         </div>
 
