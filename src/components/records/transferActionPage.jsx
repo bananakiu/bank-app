@@ -37,6 +37,7 @@ const TransferActionPage = ({
             {/* TODO: remove repetitive datalist dropdown icon */}
             <label htmlFor="transfer-to-account">Transfer to</label>
             <input
+                value={actTransferToAccountName}
                 onChange={handleActTransferToAccountNameChange}
                 list="transfer-to-account-list"
                 name="transfer-to-account"

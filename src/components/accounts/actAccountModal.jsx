@@ -56,6 +56,13 @@ const ActAccountModal = ({
     const handleActAccountSubmit = (event) => {
         // prevent refresh
         event.preventDefault();
+
+        // reset inputs
+        setActAccountName("");
+        setActTransferToAccountName("");
+        setActDepositAmount(0);
+        setActWithdrawAmount(0);
+        setActTransferAmount(0);
         
         // close modal
         setIsActAccountModalOpen(false);
