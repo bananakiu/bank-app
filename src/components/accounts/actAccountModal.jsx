@@ -22,8 +22,14 @@ const ActAccountModal = ({
     setAction,
     actAccountName,
     setActAccountName,
+    actTransferToAccountName,
+    setActTransferToAccountName,
     actDepositAmount,
     setActDepositAmount,
+    actWithdrawAmount,
+    setActWithdrawAmount,
+    actTransferAmount,
+    setActTransferAmount,
 
     // modal open
     isActAccountModalOpen,
@@ -42,6 +48,11 @@ const ActAccountModal = ({
     const handleTransferTabOnClick = () => {
         setAction("transfer");
     }
+
+    const handleActAccountNameChange = (e) => {
+        setActAccountName(e.target.value);
+    }
+
     const handleActAccountSubmit = (event) => {
         // prevent refresh
         event.preventDefault();
@@ -62,7 +73,6 @@ const ActAccountModal = ({
             py-4 px-6 mt-8 mb-4 mx-8
             border-gray-150 border-2 rounded-lg
             transition duration-200
-            flex flex-col
             bg-white
             w-96 lg:w-5/12
             ">
@@ -92,36 +102,67 @@ const ActAccountModal = ({
                         <i className="fas fa-exchange-alt text-xs"></i> <span className="font-semibold">Transfer</span>
                     </li>
                 </ul>
-                {/* showing specific components depending on chosen action type */}
-                <DepositActionPage 
-                    accounts={accounts}
-                    setAccounts={setAccounts}
 
-                    action={action}
-                    setAction={setAction}
-                    actAccountName={actAccountName}
-                    setActAccountName={setActAccountName}
-                    actDepositAmount={actDepositAmount}
-                    setActDepositAmount={setActDepositAmount}
-                />
-                <WithdrawActionPage
-                    accounts={accounts}
-                    setAccounts={setAccounts}
+                {/* FORM */}
+                <div className="flex flex-col justify-center items-center">
+                    <div className="flex flex-col mb-4">
+                        {/* TODO: remove repetitive datalist dropdown icon */}
+                        <label htmlFor="action-account">Account</label>
+                        <input
+                            onChange={handleActAccountNameChange}
+                            list="action-account-list"
+                            name="action-account"
+                            id="action-account"
+                            required
+                            className="
+                            form-select truncate rounded-lg
+                            w-72
+                        "/>
+                        <datalist id="action-account-list">
+                            {
+                                accounts.map((account) => {
+                                    return <option label={`${account.name} (${account.email})`} value={account.email}/>
+                                })
+                            }
+                        </datalist>
+                    </div>
+                    {/* showing specific components depending on chosen action type */}
+                    <DepositActionPage 
+                        accounts={accounts}
+                        setAccounts={setAccounts}
 
-                    action={action}
-                    setAction={setAction}
-                    actAccountName={actAccountName}
-                    setActAccountName={setActAccountName}
-                />
-                <TransferActionPage
-                    accounts={accounts}
-                    setAccounts={setAccounts}
+                        action={action}
+                        setAction={setAction}
+                        actAccountName={actAccountName}
+                        setActAccountName={setActAccountName}
+                        actDepositAmount={actDepositAmount}
+                        setActDepositAmount={setActDepositAmount}
+                    />
+                    <WithdrawActionPage
+                        accounts={accounts}
+                        setAccounts={setAccounts}
 
-                    action={action}
-                    setAction={setAction}
-                    actAccountName={actAccountName}
-                    setActAccountName={setActAccountName}
-                />
+                        action={action}
+                        setAction={setAction}
+                        actAccountName={actAccountName}
+                        setActAccountName={setActAccountName}
+                        actWithdrawAmount={actWithdrawAmount}
+                        setActWithdrawAmount={setActWithdrawAmount}
+                    />
+                    <TransferActionPage
+                        accounts={accounts}
+                        setAccounts={setAccounts}
+
+                        action={action}
+                        setAction={setAction}
+                        actAccountName={actAccountName}
+                        setActAccountName={setActAccountName}
+                        actTransferToAccountName={actTransferToAccountName}
+                        setActTransferToAccountName={setActTransferToAccountName}
+                        actTransferAmount={actTransferAmount}
+                        setActTransferAmount={setActTransferAmount}
+                    />
+                </div>
             </form>
         </section>
     </>

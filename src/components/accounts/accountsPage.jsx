@@ -24,8 +24,14 @@ const AccountsPage = ({
     setAction,
     actAccountName,
     setActAccountName,
+    actTransferToAccountName,
+    setActTransferToAccountName,
     actDepositAmount,
     setActDepositAmount,
+    actWithdrawAmount,
+    setActWithdrawAmount,
+    actTransferAmount,
+    setActTransferAmount,
 
     // modals
     isAddAccountModalOpen,
@@ -105,8 +111,14 @@ const AccountsPage = ({
             setAction={setAction}
             actAccountName={actAccountName}
             setActAccountName={setActAccountName}
+            actTransferToAccountName={actTransferToAccountName}
+            setActTransferToAccountName={setActTransferToAccountName}
             actDepositAmount={actDepositAmount}
             setActDepositAmount={setActDepositAmount}
+            actWithdrawAmount={actWithdrawAmount}
+            setActWithdrawAmount={setActWithdrawAmount}
+            actTransferAmount={actTransferAmount}
+            setActTransferAmount={setActTransferAmount}
 
             isActAccountModalOpen={isActAccountModalOpen}
             setIsActAccountModalOpen={setIsActAccountModalOpen}

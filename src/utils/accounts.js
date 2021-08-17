@@ -28,6 +28,8 @@ export const withdraw = (accounts, email, amt) => { // ! email or account, not y
         if (account.email.toLowerCase() === email.toLowerCase()) {
             account.balance -= amt;
             return account;
+        } else {
+            return account;
         };
     });
 };
@@ -50,12 +52,16 @@ export const transfer = (accounts, emailFrom, emailTo, amt) => { // ! email or a
         if (account.email.toLowerCase() === emailFrom.toLowerCase()) {
             account.balance -= parseFloat(amt);
             return account;
+        } else {
+            return account;
         };
     });
     
     accounts.map(account => {
         if (account.email.toLowerCase() === emailTo.toLowerCase()) {
             account.balance += parseFloat(amt);
+            return account;
+        } else {
             return account;
         };
     });

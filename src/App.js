@@ -49,7 +49,11 @@ const App = () => {
 
   const [action, setAction] = useState("deposit");
   const [actAccountName, setActAccountName] = useState("");
+  const [actTransferToAccountName, setActTransferToAccountName] = useState("")
   const [actDepositAmount, setActDepositAmount] = useState(0);
+  const [actWithdrawAmount, setActWithdrawAmount] = useState(0);
+  const [actTransferAmount, setActTransferAmount] = useState(0);
+  
 
   // return/render page
   return (
@@ -100,8 +104,14 @@ const App = () => {
           setAction={setAction}
           actAccountName={actAccountName}
           setActAccountName={setActAccountName}
+          actTransferToAccountName={actTransferToAccountName}
+          setActTransferToAccountName={setActTransferToAccountName}
           actDepositAmount={actDepositAmount}
           setActDepositAmount={setActDepositAmount}
+          actWithdrawAmount={actWithdrawAmount}
+          setActWithdrawAmount={setActWithdrawAmount}
+          actTransferAmount={actTransferAmount}
+          setActTransferAmount={setActTransferAmount}
         />
         <RecordsPage isRecordsOpen={isRecordsOpen} />
         <LoginPage isLoginOpen={isLoginOpen} />
