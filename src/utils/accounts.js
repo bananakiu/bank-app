@@ -36,7 +36,9 @@ export const withdraw = (accounts, email, amt) => { // ! email or account, not y
 export const deposit = (accounts, email, amt) => { // ! email or account, not yet sure
     return accounts.map(account => {
         if (account.email.toLowerCase() === email.toLowerCase()) {
-            account.balance += amt;
+            account.balance += parseFloat(amt);
+            return account;
+        } else {
             return account;
         };
     });
@@ -46,14 +48,14 @@ export const deposit = (accounts, email, amt) => { // ! email or account, not ye
 export const transfer = (accounts, emailFrom, emailTo, amt) => { // ! email or account, not yet sure
     accounts.map(account => {
         if (account.email.toLowerCase() === emailFrom.toLowerCase()) {
-            account.balance -= amt;
+            account.balance -= parseFloat(amt);
             return account;
         };
     });
     
     accounts.map(account => {
         if (account.email.toLowerCase() === emailTo.toLowerCase()) {
-            account.balance += amt;
+            account.balance += parseFloat(amt);
             return account;
         };
     });

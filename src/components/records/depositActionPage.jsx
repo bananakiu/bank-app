@@ -4,16 +4,27 @@ import Button from '../common/button';
 const DepositActionPage = ({
     accounts,
     setAccounts,
-
-    // depositAmount,
-    // setDepositAmount,
     
     action,
-    setAction
+    setAction,
+    actAccountName,
+    setActAccountName,
+    actDepositAmount,
+    setActDepositAmount
 }) => {
     // handlers
     const handleButtonClick = () => {
-        alert("deposit button clicked!");
+        // perform action
+        // console.log(deposit(accounts, actAccountName, actDepositAmount));
+        setAccounts(deposit(accounts, actAccountName, actDepositAmount));
+    }
+
+    const handleActAccountNameChange = (e) => {
+        setActAccountName(e.target.value);
+    }
+
+    const handleActDepositAmountChange = (e) => {
+        setActDepositAmount(e.target.value);
     }
 
     // render
@@ -23,22 +34,28 @@ const DepositActionPage = ({
     `}>
         <div className="flex flex-col mb-4">
             {/* TODO: remove repetitive datalist dropdown icon */}
-            <label htmlFor="deposit-account">Account Name</label>
-            <input list="deposit-account-list" name="deposit-account" id="deposit-account" required className="
-            form-select truncate rounded-lg
-            w-72
+            <label htmlFor="deposit-account">Account</label>
+            <input
+                onChange={handleActAccountNameChange}
+                list="deposit-account-list"
+                name="deposit-account"
+                id="deposit-account"
+                required
+                className="
+                form-select truncate rounded-lg
+                w-72
             "/>
             <datalist id="deposit-account-list">
                 {
                     accounts.map((account) => {
-                        return <option>{account.name} ({account.email})</option>
+                        return <option label={`${account.name} (${account.email})`} value={account.email}/>
                     })
                 }
             </datalist>
         </div>
         <div className="flex flex-col mb-4">
             <label htmlFor="deposit-amount">Deposit Amount (Php)</label>
-            <input type="number" id="deposit-amount" required className="form-input rounded-lg w-72"/>
+            <input value={actDepositAmount} onChange={handleActDepositAmountChange} type="number" id="deposit-amount" required className="form-input rounded-lg w-72"/>
         </div>
         
 

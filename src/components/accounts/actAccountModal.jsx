@@ -1,3 +1,6 @@
+import React from 'react';
+import './../../App.css';
+
 import DepositActionPage from '../records/depositActionPage';
 import WithdrawActionPage from '../records/withdrawActionPage';
 import TransferActionPage from '../records/transferActionPage';
@@ -17,10 +20,15 @@ const ActAccountModal = ({
     // form states
     action,
     setAction,
+    actAccountName,
+    setActAccountName,
+    actDepositAmount,
+    setActDepositAmount,
 
     // modal open
     isActAccountModalOpen,
     setIsActAccountModalOpen,
+    
 }) => {
     // functions for the form
     const handleDepositTabOnClick = () => {
@@ -67,21 +75,21 @@ const ActAccountModal = ({
                     w-full cursor-pointer
                     ${action==="deposit" ? "bg-gray-300 border-2 border-gray-300 hover:bg-gray-300" : "hover:bg-gray-100"}
                     `}>
-                        <i class="fas fa-plus text-xs"></i> <span className="font-semibold">Deposit</span>
+                        <i className="fas fa-plus text-xs"></i> <span className="font-semibold">Deposit</span>
                     </li>
                     <li onClick={handleWithdrawTabOnClick} className={`
                     w-full cursor-pointer
                     border-l-4 border-gray-300 hover:bg-gray-100
                     ${action==="withdraw" ? "bg-gray-300 border-2 border-gray-300 hover:bg-gray-300" : "hover:bg-gray-100"}
                     `}>
-                        <i class="fas fa-minus text-xs"></i> <span className="font-semibold">Withdraw</span>
+                        <i className="fas fa-minus text-xs"></i> <span className="font-semibold">Withdraw</span>
                     </li>
                     <li onClick={handleTransferTabOnClick} className={`
                     w-full cursor-pointer
                     border-l-4 border-gray-300 hover:bg-gray-100
                     ${action==="transfer" ? "bg-gray-300 border-2 border-gray-300 hover:bg-gray-300" : "hover:bg-gray-100"}
                     `}>
-                        <i class="fas fa-exchange-alt text-xs"></i> <span className="font-semibold">Transfer</span>
+                        <i className="fas fa-exchange-alt text-xs"></i> <span className="font-semibold">Transfer</span>
                     </li>
                 </ul>
                 {/* showing specific components depending on chosen action type */}
@@ -91,6 +99,10 @@ const ActAccountModal = ({
 
                     action={action}
                     setAction={setAction}
+                    actAccountName={actAccountName}
+                    setActAccountName={setActAccountName}
+                    actDepositAmount={actDepositAmount}
+                    setActDepositAmount={setActDepositAmount}
                 />
                 <WithdrawActionPage
                     accounts={accounts}
@@ -98,6 +110,8 @@ const ActAccountModal = ({
 
                     action={action}
                     setAction={setAction}
+                    actAccountName={actAccountName}
+                    setActAccountName={setActAccountName}
                 />
                 <TransferActionPage
                     accounts={accounts}
@@ -105,6 +119,8 @@ const ActAccountModal = ({
 
                     action={action}
                     setAction={setAction}
+                    actAccountName={actAccountName}
+                    setActAccountName={setActAccountName}
                 />
             </form>
         </section>

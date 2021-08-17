@@ -3,9 +3,8 @@ import DashboardPage from './components/dashboard/dashboardPage';
 import AccountsPage from './components/accounts/accountsPage';
 import RecordsPage from './components/records/recordsPage';
 import LoginPage from './components/login/loginPage';
-import { addAccount } from './utils/accounts';
 import React, { useState } from 'react';
-import Button from './components/common/button';
+import './App.css';
 
 // App
 const App = () => {
@@ -44,11 +43,13 @@ const App = () => {
   const [isActAccountModalOpen, setIsActAccountModalOpen] = useState(true);
 
   const [newAccountName, setNewAccountName] = useState("");
-  const [newEmail, setNewEmail] = useState();
-  const [newAccountType, setNewAccountType] = useState();
-  const [newInitialAmount, setNewInitialAmount] = useState();
+  const [newEmail, setNewEmail] = useState("");
+  const [newAccountType, setNewAccountType] = useState("");
+  const [newInitialAmount, setNewInitialAmount] = useState(0);
 
   const [action, setAction] = useState("deposit");
+  const [actAccountName, setActAccountName] = useState("");
+  const [actDepositAmount, setActDepositAmount] = useState(0);
 
   // return/render page
   return (
@@ -97,6 +98,10 @@ const App = () => {
 
           action={action}
           setAction={setAction}
+          actAccountName={actAccountName}
+          setActAccountName={setActAccountName}
+          actDepositAmount={actDepositAmount}
+          setActDepositAmount={setActDepositAmount}
         />
         <RecordsPage isRecordsOpen={isRecordsOpen} />
         <LoginPage isLoginOpen={isLoginOpen} />

@@ -22,6 +22,10 @@ const AccountsPage = ({
 
     action,
     setAction,
+    actAccountName,
+    setActAccountName,
+    actDepositAmount,
+    setActDepositAmount,
 
     // modals
     isAddAccountModalOpen,
@@ -99,6 +103,10 @@ const AccountsPage = ({
 
             action={action}
             setAction={setAction}
+            actAccountName={actAccountName}
+            setActAccountName={setActAccountName}
+            actDepositAmount={actDepositAmount}
+            setActDepositAmount={setActDepositAmount}
 
             isActAccountModalOpen={isActAccountModalOpen}
             setIsActAccountModalOpen={setIsActAccountModalOpen}
