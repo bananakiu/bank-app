@@ -1,5 +1,6 @@
-import { deposit, withdraw, transfer, deleteAccount } from '../../utils/accounts';
-import Button from '../common/button';
+import DepositActionPage from '../records/depositActionPage';
+import WithdrawActionPage from '../records/withdrawActionPage';
+import TransferActionPage from '../records/transferActionPage';
 
 // TODO: x-button to close modal
 // TODO: click out to close modal
@@ -14,22 +15,31 @@ const ActAccountModal = ({
     setIdGenerator,
 
     // form states
+    action,
+    setAction,
 
     // modal open
     isActAccountModalOpen,
     setIsActAccountModalOpen,
 }) => {
     // functions for the form
+    const handleDepositTabOnClick = () => {
+        setAction("deposit");
+    }
+
+    const handleWithdrawTabOnClick = () => {
+        setAction("withdraw");
+    }
+
+    const handleTransferTabOnClick = () => {
+        setAction("transfer");
+    }
     const handleActAccountSubmit = (event) => {
         // prevent refresh
         event.preventDefault();
-
-        // change accounts
-
-        // reset values
         
         // close modal
-        setIsActAccountModalOpen(false)
+        setIsActAccountModalOpen(false);
     }
 
     // render
@@ -46,54 +56,59 @@ const ActAccountModal = ({
             transition duration-200
             flex flex-col
             bg-white
-            w-96
+            w-96 lg:w-5/12
             ">
                 {/* select action type */}
                 <ul className="
                 flex flex-row justify-stretch items-stretch
                 rounded-lg border-4 border-gray-300
                 ">
-                    <li className="
-                    w-full
-                    hover:bg-gray-100
-                    ">
-                        Deposit
+                    <li onClick={handleDepositTabOnClick} className={`
+                    w-full cursor-pointer
+                    ${action==="deposit" ? "bg-gray-300 border-2 border-gray-300 hover:bg-gray-300" : "hover:bg-gray-100"}
+                    `}>
+                        <i class="fas fa-plus text-xs"></i> <span className="font-semibold">Deposit</span>
                     </li>
-                    <li className="
-                    w-full
+                    <li onClick={handleWithdrawTabOnClick} className={`
+                    w-full cursor-pointer
                     border-l-4 border-gray-300 hover:bg-gray-100
-                    ">
-                        Withdraw
+                    ${action==="withdraw" ? "bg-gray-300 border-2 border-gray-300 hover:bg-gray-300" : "hover:bg-gray-100"}
+                    `}>
+                        <i class="fas fa-minus text-xs"></i> <span className="font-semibold">Withdraw</span>
                     </li>
-                    <li className="
-                    w-full
+                    <li onClick={handleTransferTabOnClick} className={`
+                    w-full cursor-pointer
                     border-l-4 border-gray-300 hover:bg-gray-100
-                    ">
-                        Transfer
+                    ${action==="transfer" ? "bg-gray-300 border-2 border-gray-300 hover:bg-gray-300" : "hover:bg-gray-100"}
+                    `}>
+                        <i class="fas fa-exchange-alt text-xs"></i> <span className="font-semibold">Transfer</span>
                     </li>
                 </ul>
-
                 {/* showing specific components depending on chosen action type */}
-                {/* Deposit Component */}
-                {/* Withdraw Component */}
-                {/* Transfer Component */}
+                <DepositActionPage 
+                    accounts={accounts}
+                    setAccounts={setAccounts}
 
-                {/* submit button */}
-                <div>
-                    <Button
-                        content="Add record"
-                        color="bg-green-500"
-                        hoverColor="hover:bg-green-600"
-                        otherStyling="w-3/5"
-                    />
-                </div>
+                    action={action}
+                    setAction={setAction}
+                />
+                <WithdrawActionPage
+                    accounts={accounts}
+                    setAccounts={setAccounts}
+
+                    action={action}
+                    setAction={setAction}
+                />
+                <TransferActionPage
+                    accounts={accounts}
+                    setAccounts={setAccounts}
+
+                    action={action}
+                    setAction={setAction}
+                />
             </form>
         </section>
     </>
 } 
 
 export default ActAccountModal;
-
-// <i class="fas fa-minus"></i> WITHDRAW
-// <i class="fas fa-plus"></i> DEPOSIT
-// <i class="fas fa-exchange-alt"></i> TRANSFER

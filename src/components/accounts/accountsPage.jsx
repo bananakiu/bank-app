@@ -20,11 +20,15 @@ const AccountsPage = ({
     newInitialAmount,
     setNewInitialAmount,
 
+    action,
+    setAction,
+
     // modals
     isAddAccountModalOpen,
     setIsAddAccountModalOpen,
     isActAccountModalOpen,
     setIsActAccountModalOpen,
+
 }) => {
     // functions
     const handleAddAccountOnClick = () => {
@@ -92,6 +96,9 @@ const AccountsPage = ({
             setAccounts={setAccounts}
             idGenerator={idGenerator}
             setIdGenerator={setIdGenerator}
+
+            action={action}
+            setAction={setAction}
 
             isActAccountModalOpen={isActAccountModalOpen}
             setIsActAccountModalOpen={setIsActAccountModalOpen}

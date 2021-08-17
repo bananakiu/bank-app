@@ -48,6 +48,7 @@ const App = () => {
   const [newAccountType, setNewAccountType] = useState();
   const [newInitialAmount, setNewInitialAmount] = useState();
 
+  const [action, setAction] = useState("deposit");
 
   // return/render page
   return (
@@ -93,6 +94,9 @@ const App = () => {
           setIsAddAccountModalOpen={setIsAddAccountModalOpen}
           isActAccountModalOpen={isActAccountModalOpen}
           setIsActAccountModalOpen={setIsActAccountModalOpen}
+
+          action={action}
+          setAction={setAction}
         />
         <RecordsPage isRecordsOpen={isRecordsOpen} />
         <LoginPage isLoginOpen={isLoginOpen} />
