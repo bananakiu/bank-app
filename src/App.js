@@ -78,8 +78,13 @@ const App = () => {
         />
       </header>
       <main>
-        <DashboardPage isDashboardOpen={isDashboardOpen} />
-        <AccountsPage
+        
+        {isDashboardOpen &&
+          <DashboardPage isDashboardOpen={isDashboardOpen} />
+        }
+
+        {isAccountsOpen && 
+          <AccountsPage
           accounts={accounts}
           setAccounts={setAccounts}
           idGenerator={idGenerator}
@@ -113,8 +118,13 @@ const App = () => {
           actTransferAmount={actTransferAmount}
           setActTransferAmount={setActTransferAmount}
         />
-        <RecordsPage isRecordsOpen={isRecordsOpen} />
-        <LoginPage isLoginOpen={isLoginOpen} />
+        }
+        {isRecordsOpen &&
+          <RecordsPage isRecordsOpen={isRecordsOpen} />
+        }
+        {isLoginOpen &&
+          <LoginPage isLoginOpen={isLoginOpen} />
+        }
       </main>
     </>
   );

@@ -30,7 +30,6 @@ const TransferActionPage = ({
 
     // render
     return <div className={`
-    ${action==="transfer" ? "" : "hidden"}
     flex flex-col justify-center items-center
     `}>
         <div className="flex flex-col mb-4">

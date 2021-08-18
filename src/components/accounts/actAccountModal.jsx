@@ -63,6 +63,7 @@ const ActAccountModal = ({
         setActDepositAmount(0);
         setActWithdrawAmount(0);
         setActTransferAmount(0);
+        setAction("deposit");
         
         // close modal
         setIsActAccountModalOpen(false);
@@ -74,7 +75,6 @@ const ActAccountModal = ({
         h-screen w-full fixed z-10 inset-0 overflow-y-auto
         flex justify-center items-center text-center
         bg-black bg-opacity-50
-        ${isActAccountModalOpen ? "" : "hidden"}
         `}>
             <form onSubmit={handleActAccountSubmit} className="
             py-4 px-6 mt-8 mb-4 mx-8
@@ -135,7 +135,8 @@ const ActAccountModal = ({
                         </datalist>
                     </div>
                     {/* showing specific components depending on chosen action type */}
-                    <DepositActionPage 
+                    {action==="deposit" &&
+                        <DepositActionPage 
                         accounts={accounts}
                         setAccounts={setAccounts}
 
@@ -145,8 +146,11 @@ const ActAccountModal = ({
                         setActAccountName={setActAccountName}
                         actDepositAmount={actDepositAmount}
                         setActDepositAmount={setActDepositAmount}
-                    />
-                    <WithdrawActionPage
+                        />
+                    }
+                    
+                    {action==="withdraw" &&
+                        <WithdrawActionPage
                         accounts={accounts}
                         setAccounts={setAccounts}
 
@@ -157,7 +161,10 @@ const ActAccountModal = ({
                         actWithdrawAmount={actWithdrawAmount}
                         setActWithdrawAmount={setActWithdrawAmount}
                     />
-                    <TransferActionPage
+                    }
+
+                    {action==="transfer" && 
+                        <TransferActionPage
                         accounts={accounts}
                         setAccounts={setAccounts}
 
@@ -169,7 +176,9 @@ const ActAccountModal = ({
                         setActTransferToAccountName={setActTransferToAccountName}
                         actTransferAmount={actTransferAmount}
                         setActTransferAmount={setActTransferAmount}
-                    />
+                        />
+                    }
+                    
                 </div>
             </form>
         </section>

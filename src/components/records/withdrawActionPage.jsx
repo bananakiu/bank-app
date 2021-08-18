@@ -24,7 +24,6 @@ const WithdrawActionPage = ({
 
     // render
     return <div className={`
-    ${action==="withdraw" ? "" : "hidden"}
     flex flex-col justify-center items-center
     `}>
         <div className="flex flex-col mb-4">

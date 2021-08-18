@@ -50,7 +50,6 @@ const AccountsPage = ({
         {/* accounts page */}
         <div className={`
         flex justify-center items-start text-center my-4 mx-8
-        pt-6 ${isAccountsOpen ? "" : "hidden"}
         `}>
             <div id="accounts-utility-panel" className="
             w-80 mr-4 px-4 py-8
@@ -109,7 +108,8 @@ const AccountsPage = ({
         />
 
         {/* act account modal */}
-        <ActAccountModal
+        {isActAccountModalOpen && 
+            <ActAccountModal
             accounts={accounts}
             setAccounts={setAccounts}
             idGenerator={idGenerator}
@@ -131,6 +131,7 @@ const AccountsPage = ({
             isActAccountModalOpen={isActAccountModalOpen}
             setIsActAccountModalOpen={setIsActAccountModalOpen}
         />
+        }
     </>
 };
 

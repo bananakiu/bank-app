@@ -29,7 +29,6 @@ const DepositActionPage = ({
 
     // render
     return <div className={`
-    ${action==="deposit" ? "" : "hidden"}
     flex flex-col justify-center items-center
     `}>
         <div className="flex flex-col mb-4">
