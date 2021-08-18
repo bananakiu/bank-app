@@ -1,5 +1,5 @@
 import { withdraw } from '../../utils/accounts';
-import Button from '../common/button';
+import Button from '../common/Button';
 
 const WithdrawActionPage = ({
     accounts,

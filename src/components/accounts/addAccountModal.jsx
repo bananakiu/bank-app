@@ -1,5 +1,5 @@
-import { addAccount } from './../../utils/accounts';
-import Button from './../common/button';
+import { addAccount } from '../../utils/accounts';
+import Button from '../common/Button';
 
 // TODO: x-button to close modal
 // TODO: click out to close modal

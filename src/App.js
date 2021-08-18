@@ -1,8 +1,8 @@
-import NavBar from './components/common/navbar';
-import DashboardPage from './components/dashboard/dashboardPage';
-import AccountsPage from './components/accounts/accountsPage';
-import RecordsPage from './components/records/recordsPage';
-import LoginPage from './components/login/loginPage';
+import NavBar from './components/common/Navbar';
+import DashboardPage from './components/dashboard/DashboardPage';
+import AccountsPage from './components/accounts/AccountsPage';
+import RecordsPage from './components/records/RecordsPage';
+import LoginPage from './components/login/LoginPage';
 import React, { useState } from 'react';
 import './App.css';
 

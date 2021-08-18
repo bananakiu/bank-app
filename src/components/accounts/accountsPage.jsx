@@ -1,7 +1,7 @@
-import AccountRow from "./accountRow";
-import Button from "../common/button";
-import AddAccountModal from "./addAccountModal";
-import ActAccountModal from "./actAccountModal";
+import AccountRow from "./AccountRow";
+import Button from "../common/Button";
+import AddAccountModal from "./AddAccountModal";
+import ActAccountModal from "./ActAccountModal";
 
 const AccountsPage = ({
     accounts,

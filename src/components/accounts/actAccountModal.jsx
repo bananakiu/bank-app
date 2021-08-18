@@ -1,9 +1,9 @@
 import React from 'react';
 import './../../App.css';
 
-import DepositActionPage from '../records/depositActionPage';
-import WithdrawActionPage from '../records/withdrawActionPage';
-import TransferActionPage from '../records/transferActionPage';
+import DepositActionPage from '../records/DepositActionPage';
+import WithdrawActionPage from '../records/WithdrawActionPage';
+import TransferActionPage from '../records/TransferActionPage';
 
 // TODO: x-button to close modal
 // TODO: click out to close modal
