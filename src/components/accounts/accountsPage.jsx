@@ -7,7 +7,11 @@ const AccountsPage = ({
     accounts,
     setAccounts,
     idGenerator,
-    setIdGenerator, 
+    setIdGenerator,
+    records,
+    setRecords,
+    recordsIdGenerator,
+    setRecordsIdGenerator,
     isAccountsOpen,
 
     // form states
@@ -93,6 +97,10 @@ const AccountsPage = ({
             setAccounts={setAccounts}
             idGenerator={idGenerator}
             setIdGenerator={setIdGenerator}
+            records={records}
+            setRecords={setRecords}
+            recordsIdGenerator={recordsIdGenerator}
+            setRecordsIdGenerator={setRecordsIdGenerator}
 
             newAccountName={newAccountName}
             setNewAccountName={setNewAccountName}
@@ -114,6 +122,10 @@ const AccountsPage = ({
             setAccounts={setAccounts}
             idGenerator={idGenerator}
             setIdGenerator={setIdGenerator}
+            records={records}
+            setRecords={setRecords}
+            recordsIdGenerator={recordsIdGenerator}
+            setRecordsIdGenerator={setRecordsIdGenerator}
 
             action={action}
             setAction={setAction}

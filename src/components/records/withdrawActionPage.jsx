@@ -4,6 +4,10 @@ import Button from '../common/Button';
 const WithdrawActionPage = ({
     accounts,
     setAccounts,
+    records,
+    setRecords,
+    recordsIdGenerator,
+    setRecordsIdGenerator,
     
     action,
     setAction,
@@ -15,7 +19,11 @@ const WithdrawActionPage = ({
     // handlers
     const handleButtonClick = () => {
         // perform action
-        setAccounts(withdraw(accounts, actAccountName, actWithdrawAmount));
+        
+        let [newAccounts, newRecords, newRecordsIdGenerator] = withdraw(accounts, actAccountName, actWithdrawAmount, records, recordsIdGenerator);
+        setAccounts(newAccounts);
+        setRecords(newRecords);
+        setRecordsIdGenerator(newRecordsIdGenerator);
     }
     
     const handleActWithdrawAmountChange = (e) => {

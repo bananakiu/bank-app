@@ -12,6 +12,10 @@ const AddAccountModal = ({
     setAccounts,
     idGenerator,
     setIdGenerator,
+    records,
+    setRecords,
+    recordsIdGenerator,
+    setRecordsIdGenerator,
 
     // form states
     newAccountName,
@@ -49,15 +53,17 @@ const AddAccountModal = ({
         event.preventDefault();
 
         // add accounts
-        let [newAccounts, newIdGenerator] = addAccount(accounts, idGenerator, newAccountName, newEmail, newInitialAmount);
+        let [newAccounts, newIdGenerator, newRecords, newRecordsIdGenerator] = addAccount(accounts, idGenerator, newAccountName, newEmail, newInitialAmount, records, recordsIdGenerator);
         setAccounts(newAccounts);
         setIdGenerator(newIdGenerator);
+        setRecords(newRecords);
+        setRecordsIdGenerator(newRecordsIdGenerator);
 
         // reset values
         setNewAccountName("");
         setNewEmail("");
         setNewAccountType("");
-        setNewInitialAmount("");
+        setNewInitialAmount(0);
 
         // close modal
         setIsAddAccountModalOpen(false)

@@ -4,6 +4,10 @@ import Button from '../common/Button';
 const TransferActionPage = ({
     accounts,
     setAccounts,
+    records,
+    setRecords,
+    recordsIdGenerator,
+    setRecordsIdGenerator,
     
     action,
     setAction,
@@ -17,7 +21,10 @@ const TransferActionPage = ({
     // handlers
     const handleButtonClick = () => {
         // perform action
-        setAccounts(transfer(accounts, actAccountName, actTransferToAccountName, actTransferAmount));
+        let [newAccounts, newRecords, newRecordsIdGenerator] = transfer(accounts, actAccountName, actTransferToAccountName, actTransferAmount, records, recordsIdGenerator);
+        setAccounts(newAccounts);
+        setRecords(newRecords);
+        setRecordsIdGenerator(newRecordsIdGenerator);
     }
     
     const handleActTransferToAccountNameChange = (e) => {

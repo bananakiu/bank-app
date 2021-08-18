@@ -10,13 +10,21 @@ const DepositActionPage = ({
     actAccountName,
     setActAccountName,
     actDepositAmount,
-    setActDepositAmount
+    setActDepositAmount,
+    records,
+    setRecords,
+    recordsIdGenerator,
+    setRecordsIdGenerator,
 }) => {
     // handlers
     const handleButtonClick = () => {
         // perform action
         // console.log(deposit(accounts, actAccountName, actDepositAmount));
-        setAccounts(deposit(accounts, actAccountName, actDepositAmount));
+        
+        let [newAccounts, newRecords, newRecordsIdGenerator] = deposit(accounts, actAccountName, actDepositAmount, records, recordsIdGenerator);
+        setAccounts(newAccounts);
+        setRecords(newRecords);
+        setRecordsIdGenerator(newRecordsIdGenerator);
     }
 
     const handleActAccountNameChange = (e) => {

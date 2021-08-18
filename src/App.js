@@ -32,7 +32,9 @@ const App = () => {
       },
     ]
   );
-
+  const [recordsIdGenerator, setRecordsIdGenerator] = useState(0);
+  const [records, setRecords] = useState([]);
+  
   const [isDashboardOpen, setIsDashboardOpen] = useState(false);
   const [isAccountsOpen, setIsAccountsOpen] = useState(true);
   const [isRecordsOpen, setIsRecordsOpen] = useState(false);
@@ -54,7 +56,6 @@ const App = () => {
   const [actWithdrawAmount, setActWithdrawAmount] = useState(0);
   const [actTransferAmount, setActTransferAmount] = useState(0);
   
-
   // return/render page
   return (
     <>
@@ -117,10 +118,22 @@ const App = () => {
           setActWithdrawAmount={setActWithdrawAmount}
           actTransferAmount={actTransferAmount}
           setActTransferAmount={setActTransferAmount}
+
+          records={records}
+          setRecords={setRecords}
+          recordsIdGenerator={recordsIdGenerator}
+          setRecordsIdGenerator={setRecordsIdGenerator}
         />
         }
         {isRecordsOpen &&
-          <RecordsPage isRecordsOpen={isRecordsOpen} />
+          <RecordsPage
+            records={records}
+            setRecords={setRecords}
+            recordsIdGenerator={recordsIdGenerator}
+            setRecordsIdGenerator={setRecordsIdGenerator}
+
+            isRecordsOpen={isRecordsOpen}
+          />
         }
         {isLoginOpen &&
           <LoginPage isLoginOpen={isLoginOpen} />

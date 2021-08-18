@@ -16,6 +16,10 @@ const ActAccountModal = ({
     setAccounts,
     idGenerator,
     setIdGenerator,
+    records,
+    setRecords,
+    recordsIdGenerator,
+    setRecordsIdGenerator,
 
     // form states
     action,
@@ -139,6 +143,10 @@ const ActAccountModal = ({
                         <DepositActionPage 
                         accounts={accounts}
                         setAccounts={setAccounts}
+                        records={records}
+                        setRecords={setRecords}
+                        recordsIdGenerator={recordsIdGenerator}
+                        setRecordsIdGenerator={setRecordsIdGenerator}
 
                         action={action}
                         setAction={setAction}
@@ -153,6 +161,10 @@ const ActAccountModal = ({
                         <WithdrawActionPage
                         accounts={accounts}
                         setAccounts={setAccounts}
+                        records={records}
+                        setRecords={setRecords}
+                        recordsIdGenerator={recordsIdGenerator}
+                        setRecordsIdGenerator={setRecordsIdGenerator}
 
                         action={action}
                         setAction={setAction}
@@ -160,13 +172,17 @@ const ActAccountModal = ({
                         setActAccountName={setActAccountName}
                         actWithdrawAmount={actWithdrawAmount}
                         setActWithdrawAmount={setActWithdrawAmount}
-                    />
+                        />
                     }
 
                     {action==="transfer" && 
                         <TransferActionPage
                         accounts={accounts}
                         setAccounts={setAccounts}
+                        records={records}
+                        setRecords={setRecords}
+                        recordsIdGenerator={recordsIdGenerator}
+                        setRecordsIdGenerator={setRecordsIdGenerator}
 
                         action={action}
                         setAction={setAction}
