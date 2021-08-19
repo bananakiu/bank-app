@@ -9,7 +9,6 @@ import './App.css';
 // App
 const App = () => {
   // states
-  const [idGenerator, setIdGenerator] = useState(3);
   const [accounts, setAccounts] = useState(
     [
       {
@@ -32,8 +31,11 @@ const App = () => {
       },
     ]
   );
-  const [recordsIdGenerator, setRecordsIdGenerator] = useState(0);
+  const [idGenerator, setIdGenerator] = useState(accounts.length);
+
   const [records, setRecords] = useState([]);
+  const [recordsIdGenerator, setRecordsIdGenerator] = useState(0);
+
   
   const [isDashboardOpen, setIsDashboardOpen] = useState(false);
   const [isAccountsOpen, setIsAccountsOpen] = useState(true);
@@ -129,7 +131,7 @@ const App = () => {
         {isRecordsOpen &&
           <RecordsPage
             isRecordsOpen={isRecordsOpen}
-            
+
             accounts={accounts}
             setAccounts={setAccounts}
             idGenerator={idGenerator}

@@ -79,6 +79,12 @@ const AccountsPage = ({
             flex-auto
             bg-white
             ">
+                {accounts.length===0 &&
+                    <div className="text-gray-400 text-lg mt-16">
+                        <div><i class="far fa-frown"></i></div>
+                        <p> No accounts here yet.</p>
+                    </div>
+                }
                 {accounts.map((account, index) => <AccountRow
                     key={index}
                     name={account.name}

@@ -68,6 +68,12 @@ const RecordsPage = ({
             flex flex-col-reverse flex-auto
             bg-white
             ">
+                {records.length===0 &&
+                    <div className="text-gray-400 text-lg mt-16">
+                        <div><i class="far fa-frown"></i></div>
+                        <p> No records here yet.</p>
+                    </div>
+                }
                 {records.map((record, index) => <RecordRow
                     key={index}
                     id={record.id}
