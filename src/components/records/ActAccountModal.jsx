@@ -132,8 +132,8 @@ const ActAccountModal = ({
                         "/>
                         <datalist id="action-account-list">
                             {
-                                accounts.map((account) => {
-                                    return <option label={`${account.name} (${account.email})`} value={account.email}/>
+                                accounts.map((account, index) => {
+                                    return <option key={index} label={`${account.name} (${account.email})`} value={account.email}/>
                                 })
                             }
                         </datalist>
