@@ -93,7 +93,6 @@ export const transfer = (accounts, emailFrom, emailTo, amt, records, recordsIdGe
 
 // add record
 export const addRecord = (records, recordsIdGenerator, email, type, amount) => {
-    console.log(recordsIdGenerator); // ! TEMP
     // push to accounts
     records.push(
         {
@@ -106,9 +105,6 @@ export const addRecord = (records, recordsIdGenerator, email, type, amount) => {
 
     // increment data
     recordsIdGenerator++;
-
-    // ! TEMP
-    console.log(records);
 
     return [records, recordsIdGenerator];
 };
