@@ -79,7 +79,8 @@ const AccountsPage = ({
             flex-auto
             bg-white
             ">
-                {accounts.map(account => <AccountRow
+                {accounts.map((account, index) => <AccountRow
+                    key={index}
                     name={account.name}
                     email={account.email}
                     balance={account.balance}
