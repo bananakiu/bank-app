@@ -2,6 +2,7 @@ const LoginPage = ({isLoginOpen}) => {
     return <>
     <div className={`
     flex justify-center items-center
+    h-screen border-2
     `}>
         {/* Login Menu */}
         <form action="" className="

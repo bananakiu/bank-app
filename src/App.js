@@ -8,7 +8,7 @@ import './App.css';
 
 // App
 const App = () => {
-  // states
+  // data
   const [accounts, setAccounts] = useState(
     [
       {
@@ -32,20 +32,21 @@ const App = () => {
     ]
   );
   const [idGenerator, setIdGenerator] = useState(accounts.length);
-
   const [records, setRecords] = useState([]);
   const [recordsIdGenerator, setRecordsIdGenerator] = useState(0);
-
   
+  // pages
   const [isDashboardOpen, setIsDashboardOpen] = useState(false);
-  const [isAccountsOpen, setIsAccountsOpen] = useState(true);
+  const [isAccountsOpen, setIsAccountsOpen] = useState(false);
   const [isRecordsOpen, setIsRecordsOpen] = useState(false);
-  const [isLoginOpen, setIsLoginOpen] = useState(false);
+  const [isLoginOpen, setIsLoginOpen] = useState(true);
   const [isSignupOpen, setIsSignupOpen] = useState(false);
 
+  // modals
   const [isAddAccountModalOpen, setIsAddAccountModalOpen] = useState(false);
   const [isActAccountModalOpen, setIsActAccountModalOpen] = useState(false);
 
+  // TODO: states to move down
   const [newAccountName, setNewAccountName] = useState("");
   const [newEmail, setNewEmail] = useState("");
   const [newAccountType, setNewAccountType] = useState("");
@@ -80,7 +81,7 @@ const App = () => {
           setIsSignupOpen={setIsSignupOpen}
         />
       </header>
-      <main>
+      <main className="pt-14">
         
         {isDashboardOpen &&
           <DashboardPage isDashboardOpen={isDashboardOpen} />
@@ -159,7 +160,10 @@ const App = () => {
           />
         }
         {isLoginOpen &&
-          <LoginPage isLoginOpen={isLoginOpen} />
+          <LoginPage
+            isLoginOpen={isLoginOpen}
+            setIsLoginOpen={setIsLoginOpen}
+          />
         }
       </main>
     </>

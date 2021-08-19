@@ -24,6 +24,7 @@ const NavBar = ({
 
     return <>
         <nav className="
+        fixed z-50
         flex justify-between items-center
         w-full px-3 py-0 
         text-white bg-blue-500
