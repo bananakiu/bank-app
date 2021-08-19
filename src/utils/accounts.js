@@ -9,7 +9,7 @@ export const addAccount = (accounts, idGenerator, holderName, email, initialValu
             id: idGenerator,
             email: email,
             name: holderName,
-            balance: initialValue
+            balance: parseInt(initialValue),
         }
     );
 
@@ -112,3 +112,8 @@ export const addRecord = (records, recordsIdGenerator, email, type, amount) => {
 
     return [records, recordsIdGenerator];
 };
+
+// get account from email
+export const getAccount = (accounts, email) => {
+    return accounts.filter(account => account.email.toLowerCase() === email.toLowerCase())[0];
+}

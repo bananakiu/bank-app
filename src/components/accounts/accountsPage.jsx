@@ -1,7 +1,7 @@
 import AccountRow from "./AccountRow";
 import Button from "../common/Button";
 import AddAccountModal from "./AddAccountModal";
-import ActAccountModal from "./ActAccountModal";
+import ActAccountModal from "../records/ActAccountModal";
 
 const AccountsPage = ({
     accounts,

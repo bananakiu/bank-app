@@ -86,11 +86,16 @@ const App = () => {
 
         {isAccountsOpen && 
           <AccountsPage
+          isAccountsOpen={isAccountsOpen}
+
           accounts={accounts}
           setAccounts={setAccounts}
           idGenerator={idGenerator}
           setIdGenerator={setIdGenerator}
-          isAccountsOpen={isAccountsOpen}
+          records={records}
+          setRecords={setRecords}
+          recordsIdGenerator={recordsIdGenerator}
+          setRecordsIdGenerator={setRecordsIdGenerator}
 
           newAccountName={newAccountName}
           setNewAccountName={setNewAccountName}
@@ -119,20 +124,36 @@ const App = () => {
           actTransferAmount={actTransferAmount}
           setActTransferAmount={setActTransferAmount}
 
-          records={records}
-          setRecords={setRecords}
-          recordsIdGenerator={recordsIdGenerator}
-          setRecordsIdGenerator={setRecordsIdGenerator}
         />
         }
         {isRecordsOpen &&
           <RecordsPage
+            isRecordsOpen={isRecordsOpen}
+            
+            accounts={accounts}
+            setAccounts={setAccounts}
+            idGenerator={idGenerator}
+            setIdGenerator={setIdGenerator}
             records={records}
             setRecords={setRecords}
             recordsIdGenerator={recordsIdGenerator}
             setRecordsIdGenerator={setRecordsIdGenerator}
 
-            isRecordsOpen={isRecordsOpen}
+            isActAccountModalOpen={isActAccountModalOpen}
+            setIsActAccountModalOpen={setIsActAccountModalOpen}
+  
+            action={action}
+            setAction={setAction}
+            actAccountName={actAccountName}
+            setActAccountName={setActAccountName}
+            actTransferToAccountName={actTransferToAccountName}
+            setActTransferToAccountName={setActTransferToAccountName}
+            actDepositAmount={actDepositAmount}
+            setActDepositAmount={setActDepositAmount}
+            actWithdrawAmount={actWithdrawAmount}
+            setActWithdrawAmount={setActWithdrawAmount}
+            actTransferAmount={actTransferAmount}
+            setActTransferAmount={setActTransferAmount}
           />
         }
         {isLoginOpen &&
