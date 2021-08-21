@@ -43,6 +43,9 @@ const AccountsPage = ({
     isActAccountModalOpen,
     setIsActAccountModalOpen,
 
+    // login
+    loggedIn,
+
 }) => {
     // functions
     const handleAddAccountOnClick = () => {

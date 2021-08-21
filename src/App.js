@@ -9,6 +9,17 @@ import './App.css';
 // App
 const App = () => {
   // data
+  const [adminAccounts, setAdminAccounts] = useState(
+    [
+      {
+        firstName: "Jordan",
+        lastName: "Belfort",
+        email: "jbelfort@gmail.com",
+        username: "wolfOfWallStreet",
+        password: "password",
+      }
+    ]
+  )
   const [accounts, setAccounts] = useState(
     [
       {
@@ -16,18 +27,21 @@ const App = () => {
         email: "lbj@gmail.com",
         name: "LeBron James",
         balance: 1000000,
+        // access: ["jbelfort@gmail.com"], 
       },
       {
         id: 1,
         email: "halimauCoder@gmail.com",
         name: "Maurus Vitor",
         balance: 2000000,
+        // access: ["jbelfort@gmail.com"], 
       },
       {
         id: 2,
         email: "elonmusk@gmail.com",
         name: "Elon Musk",
         balance: 3000000,
+        // access: ["jbelfort@gmail.com"],
       },
     ]
   );
@@ -58,6 +72,9 @@ const App = () => {
   const [actDepositAmount, setActDepositAmount] = useState(0);
   const [actWithdrawAmount, setActWithdrawAmount] = useState(0);
   const [actTransferAmount, setActTransferAmount] = useState(0);
+
+  // login
+  const [loggedIn, setLoggedIn] = useState(false);
   
   // return/render page
   return (
@@ -161,8 +178,11 @@ const App = () => {
         }
         {isLoginOpen &&
           <LoginPage
-            isLoginOpen={isLoginOpen}
             setIsLoginOpen={setIsLoginOpen}
+            setIsDashboardOpen={setIsDashboardOpen}
+            setIsAccountsOpen={setIsAccountsOpen}
+            setIsRecordsOpen={setIsRecordsOpen}
+            setLoggedIn={setLoggedIn}
           />
         }
       </main>
