@@ -6,6 +6,8 @@ const LoginPage = ({
     setIsDashboardOpen,
     setIsAccountsOpen,
     setIsRecordsOpen,
+    adminAccounts,
+    setAdminAccounts,
     loggedIn,
     setLoggedIn,
 }) => {

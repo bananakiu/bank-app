@@ -181,6 +181,10 @@ const App = () => {
             setIsDashboardOpen={setIsDashboardOpen}
             setIsAccountsOpen={setIsAccountsOpen}
             setIsRecordsOpen={setIsRecordsOpen}
+            
+            adminAccounts={adminAccounts}
+            setAdminAccounts={setAdminAccounts}
+            loggedIn={loggedIn}
             setLoggedIn={setLoggedIn}
           />
         }

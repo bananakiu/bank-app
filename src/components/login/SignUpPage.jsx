@@ -1,6 +1,8 @@
 import bgImage from './../../assets/bg-02.jpg'
 import { useState } from 'react';
 import { addAdminAccount } from '../../utils/login';
+import ErrorDisplay from '../common/ErrorDisplay';
+import { list } from 'postcss';
 
 const SignUpPage = ({
     setIsLoginOpen,
@@ -29,27 +31,11 @@ const SignUpPage = ({
         setIsErrorDisplayOpen(false);
 
         // validation
-        setErrors([]); // reset errors
-        let errorsCopy = [];
-        
-            // check if email already exists
-        if (adminAccounts.filter(account => account.email.toLowerCase() === email.toLowerCase()).length !== 0) {
-            errorsCopy.push("Email was already registered previously. Please register with a different one.");
-            setErrors(errorsCopy);
-        }
-            // check if username already exists
-        if (adminAccounts.filter(account => account.username.toLowerCase() === username.toLowerCase()).length !== 0) {
-            errorsCopy.push("Username was already registered previously. Please register with a different one.");
-            setErrors(errorsCopy);
-        }
-            // password and confirmPassword should match
-        if (password !== confirmPassword) {
-            errorsCopy.push("Password and confirm password do not match.");
-            setErrors(errorsCopy);
-        }
+        let listOfErrors = handleValidation();
+        setErrors(listOfErrors);
 
         // update
-        if (errors.length===0) {
+        if (listOfErrors.length===0) {
             // add new admin account
             setAdminAccounts(addAdminAccount(adminAccounts, firstName, lastName, email, username, password));
 
@@ -69,9 +55,27 @@ const SignUpPage = ({
             setLoggedIn(true);
         } else {
             // display errors
-            console.log(errors);
             setIsErrorDisplayOpen(true);
         }
+    }
+
+    const handleValidation =  () => {
+        let listOfErrors = [];
+
+        // check if email already exists
+        if (adminAccounts.filter(account => account.email.toLowerCase() === email.toLowerCase()).length !== 0) {
+            listOfErrors.push("Email was already registered previously. Please register with a different one.");
+        }
+            // check if username already exists
+        if (adminAccounts.filter(account => account.username.toLowerCase() === username.toLowerCase()).length !== 0) {
+            listOfErrors.push("Username was already registered previously. Please register with a different one.");
+        }
+            // password and confirmPassword should match
+        if (password !== confirmPassword) {
+            listOfErrors.push("Password and confirm password do not match.");
+        }
+
+        return listOfErrors;
     }
 
     const handleLoginClick = (e) => {
@@ -174,14 +178,7 @@ const SignUpPage = ({
             </div>
 
             {isErrorDisplayOpen &&
-                <div id="errors-display" className="border-2 rounded-md border-red-600 py-2 px-3 text-red-600 ">
-                    <h1 className="text-lg font-bold">Errors</h1>
-                    <ol className="text-sm text-justify">
-                        {errors.map((error, index) =>
-                            <li key={index} className="pt-2">{error}</li>
-                        )}
-                    </ol>
-                </div>
+                <ErrorDisplay errors={errors} />
             }
 
             <div className="flex items-center justify-between mt-3">
