@@ -1,8 +1,8 @@
 import bgImage from './../../assets/bg-02.jpg'
 
 const LoginPage = ({
-    // setIsSignUpOpen,
     setIsLoginOpen,
+    setIsSignupOpen,
     setIsDashboardOpen,
     setIsAccountsOpen,
     setIsRecordsOpen,
@@ -23,12 +23,21 @@ const LoginPage = ({
         setLoggedIn(true);
     }
 
+    const handleSignUpClick = (e) => {
+        e.preventDefault();
+
+        // show sign up page
+        setIsLoginOpen(false);
+        setIsSignupOpen(true);
+    }
+
+
 
     // render
     return <>
     <div className={`
     flex justify-center items-center
-    border-2
+    pt-10 pb-10
     `} style={{
         height: "calc(100vh - 3.5rem)",
         background: `url(${bgImage}) no-repeat center center fixed`,
@@ -62,7 +71,7 @@ const LoginPage = ({
                 <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition duration-200">
                     Sign In
                 </button>
-                <a className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800">
+                <a className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800" onClick={handleSignUpClick}>
                     Don't have an account?
                 </a>
             </div>

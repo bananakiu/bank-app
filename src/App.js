@@ -3,6 +3,7 @@ import DashboardPage from './components/dashboard/DashboardPage';
 import AccountsPage from './components/accounts/AccountsPage';
 import RecordsPage from './components/records/RecordsPage';
 import LoginPage from './components/login/LoginPage';
+import SignUpPage from './components/login/SignUpPage';
 import React, { useState } from 'react';
 import './App.css';
 
@@ -27,21 +28,18 @@ const App = () => {
         email: "lbj@gmail.com",
         name: "LeBron James",
         balance: 1000000,
-        // access: ["jbelfort@gmail.com"], 
       },
       {
         id: 1,
         email: "halimauCoder@gmail.com",
         name: "Maurus Vitor",
         balance: 2000000,
-        // access: ["jbelfort@gmail.com"], 
       },
       {
         id: 2,
         email: "elonmusk@gmail.com",
         name: "Elon Musk",
         balance: 3000000,
-        // access: ["jbelfort@gmail.com"],
       },
     ]
   );
@@ -53,8 +51,8 @@ const App = () => {
   const [isDashboardOpen, setIsDashboardOpen] = useState(false);
   const [isAccountsOpen, setIsAccountsOpen] = useState(false);
   const [isRecordsOpen, setIsRecordsOpen] = useState(false);
-  const [isLoginOpen, setIsLoginOpen] = useState(true);
-  const [isSignupOpen, setIsSignupOpen] = useState(false);
+  const [isLoginOpen, setIsLoginOpen] = useState(false);
+  const [isSignupOpen, setIsSignupOpen] = useState(true);
 
   // modals
   const [isAddAccountModalOpen, setIsAddAccountModalOpen] = useState(false);
@@ -179,6 +177,17 @@ const App = () => {
         {isLoginOpen &&
           <LoginPage
             setIsLoginOpen={setIsLoginOpen}
+            setIsSignupOpen={setIsSignupOpen}
+            setIsDashboardOpen={setIsDashboardOpen}
+            setIsAccountsOpen={setIsAccountsOpen}
+            setIsRecordsOpen={setIsRecordsOpen}
+            setLoggedIn={setLoggedIn}
+          />
+        }
+        {isSignupOpen &&
+          <SignUpPage
+            setIsLoginOpen={setIsLoginOpen}
+            setIsSignupOpen={setIsSignupOpen}
             setIsDashboardOpen={setIsDashboardOpen}
             setIsAccountsOpen={setIsAccountsOpen}
             setIsRecordsOpen={setIsRecordsOpen}
