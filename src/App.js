@@ -94,6 +94,9 @@ const App = () => {
 
           isSignupOpen={isSignupOpen}
           setIsSignupOpen={setIsSignupOpen}
+
+          loggedIn={loggedIn}
+          setLoggedIn={setLoggedIn}
         />
       </header>
       <main className="pt-14">
@@ -181,7 +184,7 @@ const App = () => {
             setIsDashboardOpen={setIsDashboardOpen}
             setIsAccountsOpen={setIsAccountsOpen}
             setIsRecordsOpen={setIsRecordsOpen}
-            
+
             adminAccounts={adminAccounts}
             setAdminAccounts={setAdminAccounts}
             loggedIn={loggedIn}
