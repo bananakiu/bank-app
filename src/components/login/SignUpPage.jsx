@@ -1,4 +1,5 @@
 import bgImage from './../../assets/bg-02.jpg'
+import { useState } from 'react';
 
 const SignUpPage = ({
     setIsLoginOpen,
@@ -9,6 +10,14 @@ const SignUpPage = ({
     loggedIn,
     setLoggedIn,
 }) => {
+    // form control states
+    const [firstName, setFirstName] = useState("");
+    const [lastName, setLastName] = useState("");
+    const [email, setEmail] = useState("");
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
+    const [confirmPassword, setConfirmPassword] = useState("");
+
     // handlers
     const handleSignupSubmit = (e) => {
         e.preventDefault();
@@ -27,7 +36,30 @@ const SignUpPage = ({
         // show sign up page
         setIsSignupOpen(false);
         setIsLoginOpen(true);
+    }
 
+    const handleFirstNameChange = (e) => {
+        setFirstName(e.target.value);
+    }
+
+    const handleLastNameChange = (e) => {
+        setLastName(e.target.value);
+    }
+
+    const handleEmailChange = (e) => {
+        setEmail(e.target.value);
+    }
+
+    const handleUsernameChange = (e) => {
+        setUsername(e.target.value);
+    }
+
+    const handlePasswordChange = (e) => {
+        setPassword(e.target.value);
+    }
+
+    const handleConfirmPasswordChange = (e) => {
+        setConfirmPassword(e.target.value);
     }
 
 
@@ -52,7 +84,7 @@ const SignUpPage = ({
                 <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="first-name-signup">
                     First Name
                 </label>
-                <input id="first-name-signup" type="text" placeholder="First Name" className="
+                <input value={firstName} onChange={handleFirstNameChange} id="first-name-signup" type="text" placeholder="First Name" className="
                 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline
                 "/>
             </div>
@@ -60,7 +92,7 @@ const SignUpPage = ({
                 <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="last-name-signup">
                     Last Name
                 </label>
-                <input id="last-name-signup" type="text" placeholder="Last Name" className="
+                <input value={lastName} onChange={handleLastNameChange} id="last-name-signup" type="text" placeholder="Last Name" className="
                 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline
                 "/>
             </div>
@@ -68,7 +100,7 @@ const SignUpPage = ({
                 <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email-signup">
                     Email
                 </label>
-                <input id="email-signup" type="email" placeholder="Email" className="
+                <input value={email} onChange={handleEmailChange} id="email-signup" type="email" placeholder="Email" className="
                 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline
                 "/>
             </div>
@@ -76,7 +108,7 @@ const SignUpPage = ({
                 <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="username-signup">
                     Username
                 </label>
-                <input id="username-signup" type="text" placeholder="Username" className="
+                <input value={username} onChange={handleUsernameChange} id="username-signup" type="text" placeholder="Username" className="
                 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline
                 "/>
             </div>
@@ -84,7 +116,7 @@ const SignUpPage = ({
                 <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="password-signup">
                     Password
                 </label>
-                <input id="password-signup" type="password" placeholder="*********" className="
+                <input value={password} onChange={handlePasswordChange} id="password-signup" type="password" placeholder="*********" className="
                 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline
                 "/>
             </div>
@@ -92,7 +124,7 @@ const SignUpPage = ({
                 <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="confirm-password-signup">
                     Confirm Password
                 </label>
-                <input id="confirm-password-signup" type="password" placeholder="*********" className="
+                <input value={confirmPassword} onChange={handleConfirmPasswordChange} id="confirm-password-signup" type="password" placeholder="*********" className="
                 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline
                 "/>
             </div>
@@ -111,4 +143,3 @@ const SignUpPage = ({
 };
 
 export default SignUpPage;
-
