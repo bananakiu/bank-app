@@ -21,29 +21,49 @@ const SignUpPage = ({
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
 
-
     // handlers
     const handleSignupSubmit = (e) => {
         e.preventDefault();
+        console.log(adminAccounts);
+        console.log(adminAccounts.filter(account => account.username.toLowerCase() === username.toLowerCase()));
 
-        // add new admin account
-        setAdminAccounts(addAdminAccount(adminAccounts, firstName, lastName, email, username, password));
-        console.log(adminAccounts); // ! TEMP
+        // validation
+        let errors = [];
+            // check if email already exists
+        if (adminAccounts.filter(account => account.email.toLowerCase() === email.toLowerCase()).length !== 0) {
+            errors.push("Email was already registered previously. Please register with a different one.");
+        }
+            // check if username already exists
+        if (adminAccounts.filter(account => account.username.toLowerCase() === username.toLowerCase()).length !== 0) {
+            errors.push("Username was already registered previously. Please register with a different one.");
+        }
+            // password and confirmPassword should match
+        if (password !== confirmPassword) {
+            errors.push("Password and confirm password do not match.");
+        }
 
-        // empty forms
-        setFirstName("");
-        setLastName("");
-        setEmail("");
-        setUsername("");
-        setPassword("");
-        setConfirmPassword("");
+        // update
+        if (errors.length===0) {
+            // add new admin account
+            setAdminAccounts(addAdminAccount(adminAccounts, firstName, lastName, email, username, password));
 
-        // show accounts page
-        setIsSignupOpen(false);
-        setIsAccountsOpen(true);
+            // empty forms
+            setFirstName("");
+            setLastName("");
+            setEmail("");
+            setUsername("");
+            setPassword("");
+            setConfirmPassword("");
 
-        // set state loggedIn
-        setLoggedIn(true);
+            // show accounts page
+            setIsSignupOpen(false);
+            setIsAccountsOpen(true);
+
+            // set state loggedIn
+            setLoggedIn(true);
+        } else {
+            console.log(errors);
+        }
     }
 
     const handleLoginClick = (e) => {
@@ -100,7 +120,7 @@ const SignUpPage = ({
                 <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="first-name-signup">
                     First Name
                 </label>
-                <input value={firstName} onChange={handleFirstNameChange} id="first-name-signup" type="text" placeholder="First Name" className="
+                <input value={firstName} onChange={handleFirstNameChange} required id="first-name-signup" type="text" placeholder="First Name" className="
                 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline
                 "/>
             </div>
@@ -108,7 +128,7 @@ const SignUpPage = ({
                 <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="last-name-signup">
                     Last Name
                 </label>
-                <input value={lastName} onChange={handleLastNameChange} id="last-name-signup" type="text" placeholder="Last Name" className="
+                <input value={lastName} onChange={handleLastNameChange} required id="last-name-signup" type="text" placeholder="Last Name" className="
                 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline
                 "/>
             </div>
@@ -116,7 +136,7 @@ const SignUpPage = ({
                 <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email-signup">
                     Email
                 </label>
-                <input value={email} onChange={handleEmailChange} id="email-signup" type="email" placeholder="Email" className="
+                <input value={email} onChange={handleEmailChange} required id="email-signup" type="email" placeholder="Email" className="
                 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline
                 "/>
             </div>
@@ -124,7 +144,7 @@ const SignUpPage = ({
                 <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="username-signup">
                     Username
                 </label>
-                <input value={username} onChange={handleUsernameChange} id="username-signup" type="text" placeholder="Username" className="
+                <input value={username} onChange={handleUsernameChange} required id="username-signup" type="text" placeholder="Username" className="
                 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline
                 "/>
             </div>
@@ -132,7 +152,7 @@ const SignUpPage = ({
                 <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="password-signup">
                     Password
                 </label>
-                <input value={password} onChange={handlePasswordChange} id="password-signup" type="password" placeholder="*********" className="
+                <input value={password} onChange={handlePasswordChange} required id="password-signup" type="password" placeholder="*********" className="
                 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline
                 "/>
             </div>
@@ -140,7 +160,7 @@ const SignUpPage = ({
                 <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="confirm-password-signup">
                     Confirm Password
                 </label>
-                <input value={confirmPassword} onChange={handleConfirmPasswordChange} id="confirm-password-signup" type="password" placeholder="*********" className="
+                <input value={confirmPassword} onChange={handleConfirmPasswordChange} required id="confirm-password-signup" type="password" placeholder="*********" className="
                 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline
                 "/>
             </div>
