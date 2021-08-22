@@ -102,7 +102,8 @@ const AccountsPage = ({
         </div>
 
         {/* add account modal */}
-        <AddAccountModal
+        {isAddAccountModalOpen &&
+            <AddAccountModal
             accounts={accounts}
             setAccounts={setAccounts}
             idGenerator={idGenerator}
@@ -123,7 +124,9 @@ const AccountsPage = ({
 
             isAddAccountModalOpen={isAddAccountModalOpen}
             setIsAddAccountModalOpen={setIsAddAccountModalOpen}
-        />
+            />
+        }
+        
 
         {/* act account modal */}
         {isActAccountModalOpen && 

@@ -113,7 +113,6 @@ const AddAccountModal = ({
         h-screen w-full fixed z-20 inset-0 overflow-y-auto
         flex justify-center items-center text-center
         bg-black bg-opacity-50
-        ${isAddAccountModalOpen ? "" : "hidden"}
         `}>
             <form onSubmit={handleNewAccountSubmit} className="
             py-4 px-6 mt-8 mb-4 mx-8
