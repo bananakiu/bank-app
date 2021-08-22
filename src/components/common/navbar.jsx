@@ -26,7 +26,7 @@ const NavBar = ({
 
     const handleLogOutClick = () => {
         setLoggedIn(false);
-        switchPageTo("login");
+        switchPageTo("login")();
     }
 
     return <>
