@@ -1,4 +1,3 @@
-import { deposit } from '../../utils/accounts';
 import Button from '../common/Button';
 import ErrorDisplay from '../common/ErrorDisplay';
 
@@ -19,18 +18,10 @@ const DepositActionPage = ({
 
     errors,
     isErrorDisplayOpen,
+    errorAction,
 }) => {
+    // 
     // handlers
-    const handleButtonClick = () => {
-        // perform action
-        // console.log(deposit(accounts, actAccountName, actDepositAmount));
-        
-        let [newAccounts, newRecords, newRecordsIdGenerator] = deposit(accounts, actAccountName, actDepositAmount, records, recordsIdGenerator);
-        setAccounts(newAccounts);
-        setRecords(newRecords);
-        setRecordsIdGenerator(newRecordsIdGenerator);
-    }
-
     const handleActAccountNameChange = (e) => {
         setActAccountName(e.target.value);
     }
@@ -48,7 +39,7 @@ const DepositActionPage = ({
             <input value={actDepositAmount} onChange={handleActDepositAmountChange} type="number" id="deposit-amount" required={action==="deposit" ? true : false} className="form-input rounded-lg w-72"/>
         </div>
         
-        {isErrorDisplayOpen &&
+        {isErrorDisplayOpen && errorAction === "deposit" &&
             <ErrorDisplay errors={errors} />
         }
 
@@ -59,7 +50,6 @@ const DepositActionPage = ({
                 color="bg-green-500"
                 hoverColor="hover:bg-green-600"
                 otherStyling="w-60"
-                onClickFunction={handleButtonClick}
             />
         </div>
     </div>

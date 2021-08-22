@@ -1,4 +1,3 @@
-import { transfer } from '../../utils/accounts';
 import Button from '../common/Button';
 import ErrorDisplay from '../common/ErrorDisplay';
 
@@ -22,16 +21,9 @@ const TransferActionPage = ({
 
     errors,
     isErrorDisplayOpen,
+    errorAction,
 }) => {
     // handlers
-    const handleButtonClick = () => {
-        // perform action
-        let [newAccounts, newRecords, newRecordsIdGenerator] = transfer(accounts, actAccountName, actTransferToAccountName, actTransferAmount, records, recordsIdGenerator);
-        setAccounts(newAccounts);
-        setRecords(newRecords);
-        setRecordsIdGenerator(newRecordsIdGenerator);
-    }
-    
     const handleActTransferToAccountNameChange = (e) => {
         setActTransferToAccountName(e.target.value);
     }
@@ -72,7 +64,7 @@ const TransferActionPage = ({
             <input value={actTransferAmount} onChange={handleActTransferAmountChange} type="number" id="transfer-amount" required={action==="transfer" ? true : false} className="form-input rounded-lg w-72"/>
         </div>
 
-        {isErrorDisplayOpen &&
+        {isErrorDisplayOpen && errorAction === "transfer" &&
             <ErrorDisplay errors={errors} />
         }
 
@@ -84,7 +76,6 @@ const TransferActionPage = ({
                 color="bg-green-500"
                 hoverColor="hover:bg-green-600"
                 otherStyling="w-60"
-                onClickFunction={handleButtonClick}
             />
         </div>
     </div>

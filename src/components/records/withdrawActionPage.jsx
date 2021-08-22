@@ -1,4 +1,3 @@
-import { withdraw } from '../../utils/accounts';
 import Button from '../common/Button';
 import ErrorDisplay from '../common/ErrorDisplay';
 
@@ -19,17 +18,9 @@ const WithdrawActionPage = ({
 
     errors,
     isErrorDisplayOpen,
+    errorAction,
 }) => {
     // handlers
-    const handleButtonClick = () => {
-        // perform action
-        
-        let [newAccounts, newRecords, newRecordsIdGenerator] = withdraw(accounts, actAccountName, actWithdrawAmount, records, recordsIdGenerator);
-        setAccounts(newAccounts);
-        setRecords(newRecords);
-        setRecordsIdGenerator(newRecordsIdGenerator);
-    }
-    
     const handleActWithdrawAmountChange = (e) => {
         setActWithdrawAmount(e.target.value);
     }
@@ -43,7 +34,7 @@ const WithdrawActionPage = ({
             <input value={actWithdrawAmount} onChange={handleActWithdrawAmountChange} type="number" id="withdraw-amount" required={action==="withdraw" ? true : false} className="form-input rounded-lg w-72"/>
         </div>
 
-        {isErrorDisplayOpen &&
+        {isErrorDisplayOpen && errorAction === "withdraw" &&
             <ErrorDisplay errors={errors} />
         }
         
@@ -54,7 +45,6 @@ const WithdrawActionPage = ({
                 color="bg-green-500"
                 hoverColor="hover:bg-green-600"
                 otherStyling="w-60"
-                onClickFunction={handleButtonClick}
             />
         </div>
     </div>

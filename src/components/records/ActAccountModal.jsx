@@ -4,6 +4,8 @@ import DepositActionPage from './DepositActionPage';
 import WithdrawActionPage from './WithdrawActionPage';
 import TransferActionPage from './TransferActionPage';
 
+import { deposit, withdraw, transfer } from '../../utils/accounts';
+
 // TODO: x-button to close modal
 // TODO: click out to close modal
 // TODO: esc key to close modal
@@ -42,6 +44,7 @@ const ActAccountModal = ({
     // states
     const [errors, setErrors] = useState([]);
     const [isErrorDisplayOpen, setIsErrorDisplayOpen] = useState(false);
+    const [errorAction, setErrorAction] = useState("");
 
     // functions for the form
     const handleDepositTabOnClick = () => {
@@ -69,19 +72,39 @@ const ActAccountModal = ({
         setErrors(listOfErrors);
 
         if (listOfErrors.length===0) {
-            // reset inputs
+            // actions
+            if (action==="deposit") {
+                let [newAccounts, newRecords, newRecordsIdGenerator] = deposit(accounts, actAccountName, actDepositAmount, records, recordsIdGenerator);
+                setAccounts(newAccounts);
+                setRecords(newRecords);
+                setRecordsIdGenerator(newRecordsIdGenerator);
+            } else if (action==="withdraw") {
+                let [newAccounts, newRecords, newRecordsIdGenerator] = withdraw(accounts, actAccountName, actWithdrawAmount, records, recordsIdGenerator);
+                setAccounts(newAccounts);
+                setRecords(newRecords);
+                setRecordsIdGenerator(newRecordsIdGenerator);
+            } else if (action==="transfer") {
+                let [newAccounts, newRecords, newRecordsIdGenerator] = transfer(accounts, actAccountName, actTransferToAccountName, actTransferAmount, records, recordsIdGenerator);
+                setAccounts(newAccounts);
+                setRecords(newRecords);
+                setRecordsIdGenerator(newRecordsIdGenerator);
+            }
+
+            // reset inputs/states
             setActAccountName("");
             setActTransferToAccountName("");
             setActDepositAmount(0);
             setActWithdrawAmount(0);
             setActTransferAmount(0);
             setAction("deposit");
+            setErrorAction("");
             
             // close modal
             setIsActAccountModalOpen(false);
         } else {
             // display errors
             setIsErrorDisplayOpen(true);
+            setErrorAction(action);
         }
     }
 
@@ -208,6 +231,7 @@ const ActAccountModal = ({
 
                         errors={errors}
                         isErrorDisplayOpen={isErrorDisplayOpen}
+                        errorAction={errorAction}
                         />
                     }
                     
@@ -229,6 +253,7 @@ const ActAccountModal = ({
 
                         errors={errors}
                         isErrorDisplayOpen={isErrorDisplayOpen}
+                        errorAction={errorAction}
                         />
                     }
 
@@ -252,6 +277,7 @@ const ActAccountModal = ({
 
                         errors={errors}
                         isErrorDisplayOpen={isErrorDisplayOpen}
+                        errorAction={errorAction}
                         />
                     }
                     
