@@ -1,5 +1,8 @@
+import { useState } from 'react';
 import { addAccount } from '../../utils/accounts';
 import Button from '../common/Button';
+import ErrorDisplay from '../common/ErrorDisplay';
+
 
 // TODO: x-button to close modal
 // TODO: click out to close modal
@@ -31,42 +34,77 @@ const AddAccountModal = ({
     isAddAccountModalOpen,
     setIsAddAccountModalOpen,
 }) => {
+    // states
+    const [errors, setErrors] = useState([]);
+    const [isErrorDisplayOpen, setIsErrorDisplayOpen] = useState(false);
+
     // functions for the form
-    const handleNewAccountNameChange = (event) => {
-        setNewAccountName(event.target.value);
+    const handleNewAccountNameChange = (e) => {
+        setNewAccountName(e.target.value);
     }
 
-    const handleNewEmailChange = (event) => {
-        setNewEmail(event.target.value);
+    const handleNewEmailChange = (e) => {
+        setNewEmail(e.target.value);
     }
 
-    const handleNewAccountTypeChange = (event) => {
-        setNewAccountType(event.target.value);
+    const handleNewAccountTypeChange = (e) => {
+        setNewAccountType(e.target.value);
     }
 
-    const handleNewInitialAmountChange = (event) => {
-        setNewInitialAmount(event.target.value);
+    const handleNewInitialAmountChange = (e) => {
+        setNewInitialAmount(e.target.value);
     }
 
-    const handleNewAccountSubmit = (event) => {
+    const handleNewAccountSubmit = (e) => {
         // prevent refresh
-        event.preventDefault();
+        e.preventDefault();
+        setIsErrorDisplayOpen(false);
 
-        // add accounts
-        let [newAccounts, newIdGenerator, newRecords, newRecordsIdGenerator] = addAccount(accounts, idGenerator, newAccountName, newEmail, newInitialAmount, records, recordsIdGenerator);
-        setAccounts(newAccounts);
-        setIdGenerator(newIdGenerator);
-        setRecords(newRecords);
-        setRecordsIdGenerator(newRecordsIdGenerator);
+        // validation
+        let listOfErrors = handleValidation();
+        setErrors(listOfErrors);
 
-        // reset values
-        setNewAccountName("");
-        setNewEmail("");
-        setNewAccountType("");
-        setNewInitialAmount(0);
+        if (listOfErrors.length===0) {
+            // add accounts
+            let [newAccounts, newIdGenerator, newRecords, newRecordsIdGenerator] = addAccount(accounts, idGenerator, newAccountName, newEmail, newInitialAmount, records, recordsIdGenerator);
+            setAccounts(newAccounts);
+            setIdGenerator(newIdGenerator);
+            setRecords(newRecords);
+            setRecordsIdGenerator(newRecordsIdGenerator);
 
-        // close modal
-        setIsAddAccountModalOpen(false)
+            // reset values
+            setNewAccountName("");
+            setNewEmail("");
+            setNewAccountType("");
+            setNewInitialAmount(0);
+
+            // close modal
+            setIsAddAccountModalOpen(false);
+
+        } else {
+            // display errors
+            setIsErrorDisplayOpen(true);
+        }
+    }
+
+    const handleValidation =  () => {
+        let listOfErrors = [];
+        // check if name starts with number
+        if (["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"].includes(newAccountName[0])) {
+            listOfErrors.push("Account name cannot start with number.")
+        }
+
+        // check if email already exists
+        if (accounts.filter(account => account.email.toLowerCase() === newEmail.toLowerCase()).length !== 0) {
+            listOfErrors.push("Email already associated with another account.");
+        }
+
+        // check if intial balance is negative
+        if (newInitialAmount < 0) {
+            listOfErrors.push("Initial balance cannot be negative.");
+        }
+
+        return listOfErrors;
     }
 
     // render
@@ -85,6 +123,10 @@ const AddAccountModal = ({
             bg-white
             w-96
             ">
+                <h1 className="text-2xl font-bold mb-4">Add Account</h1>
+                {isErrorDisplayOpen &&
+                    <ErrorDisplay errors={errors} />
+                }
                 <div className="flex flex-col mb-4">
                     <label>Account Name</label>
                     <input type="text" value={newAccountName} onChange={handleNewAccountNameChange} required className="form-input rounded-lg"/>
@@ -105,6 +147,7 @@ const AddAccountModal = ({
                     <label>Starting Amount</label>
                     <input type="number" value={newInitialAmount} required onChange={handleNewInitialAmountChange} className="form-input rounded-lg"/>
                 </div>
+
                 <div>
                     <Button
                         content={<>
