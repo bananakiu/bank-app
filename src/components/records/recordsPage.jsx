@@ -42,7 +42,7 @@ const RecordsPage = ({
     // render
     return <>
         <div className={`
-        flex justify-center items-start text-center my-4 mx-8
+        flex justify-center items-start text-center my-4 mx-8 mt-10
         `}>
             <div id="records-utility-panel" className="
             w-80 mr-4 px-4 py-8

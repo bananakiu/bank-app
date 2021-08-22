@@ -56,7 +56,7 @@ const AccountsPage = ({
     return <>
         {/* accounts page */}
         <div className={`
-        flex justify-center items-start text-center my-4 mx-8
+        flex justify-center items-start text-center my-4 mx-8 mt-10
         `}>
             <div id="accounts-utility-panel" className="
             w-80 mr-4 px-4 py-8

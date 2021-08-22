@@ -52,7 +52,7 @@ const NavBar = ({
                         <a className="flex-1 text-lg hover:bg-blue-600 py-4 px-6 transition duration-200 cursor-pointer" onClick={switchPageTo("landing")}>Home</a>
                     </>}
                     {loggedIn && <>
-                        <a className="flex-1 text-lg hover:bg-blue-600 py-4 px-6 transition duration-200 cursor-pointer" onClick={switchPageTo("dashboard")}>Dashboard</a>
+                        {/* <a className="flex-1 text-lg hover:bg-blue-600 py-4 px-6 transition duration-200 cursor-pointer" onClick={switchPageTo("dashboard")}>Dashboard</a> */}
                         <a className="flex-1 text-lg hover:bg-blue-600 py-4 px-6 transition duration-200 cursor-pointer" onClick={switchPageTo("accounts")}>Accounts</a>
                         <a className="flex-1 text-lg hover:bg-blue-600 py-4 px-6 transition duration-200 cursor-pointer" onClick={switchPageTo("records")}>Records</a>
                     </>}
