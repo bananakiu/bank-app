@@ -1,4 +1,6 @@
+import { useState } from 'react';
 import bgImage from './../../assets/bg-02.jpg'
+import ErrorDisplay from '../common/ErrorDisplay';
 
 const LoginPage = ({
     setIsLoginOpen,
@@ -12,19 +14,48 @@ const LoginPage = ({
     setLoggedIn,
 }) => {
     // form states
+    const [usernameLogin, setUsernameLogin] = useState("");
+    const [passwordLogin, setPasswordLogin] = useState("");
+    const [errors, setErrors] = useState([]);
+    const [isErrorDisplayOpen, setIsErrorDisplayOpen] = useState(false);
 
     // handlers
     const handleLogInSubmit = (e) => {
         e.preventDefault();
+        setIsErrorDisplayOpen(false);
+        let listOfErrors=[];
 
-        // TODO: add validation
+        // validation
+        let queriedAccount = adminAccounts.filter(account => account.username.toLowerCase() === usernameLogin.toLowerCase()); // not case sensitive
 
-        // show accounts page
-        setIsLoginOpen(false);
-        setIsAccountsOpen(true);
+        if (queriedAccount.length===0) {
+            listOfErrors.push("User does not exist.");
+        } else if (
+            (queriedAccount.length===1) &&
+            (queriedAccount[0].password !== passwordLogin)
+        ) {
+            listOfErrors.push("Incorrect password");
+        }
+        setErrors(listOfErrors);
 
-        // set state loggedIn
-        setLoggedIn(true);
+        // login
+        if (listOfErrors.length===0) {
+            // show accounts page
+            setIsLoginOpen(false);
+            setIsAccountsOpen(true);
+
+            // set state loggedIn
+            setLoggedIn(true);
+
+            // empty forms
+            setUsernameLogin("");
+            setPasswordLogin("");
+        } else {
+            // display errors
+            setIsErrorDisplayOpen(true);
+        }
+
+        // TODO: add login successful message
     }
 
     const handleSignUpClick = (e) => {
@@ -35,6 +66,13 @@ const LoginPage = ({
         setIsSignupOpen(true);
     }
 
+    const handleUsernameLoginChange = (e) => {
+        setUsernameLogin(e.target.value);
+    }
+
+    const handlePasswordLoginChange = (e) => {
+        setPasswordLogin(e.target.value);
+    }
 
 
     // render
@@ -55,23 +93,28 @@ const LoginPage = ({
         w-96
         ">
             <h1 className="text-2xl font-bold mb-4">Login</h1>
-            <div className="mb-4">
-                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="username">
+            {isErrorDisplayOpen &&
+                <ErrorDisplay errors={errors} />
+            }
+
+            <div className="mb-4 mt-4">
+                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="username-login">
                     Username
                 </label>
-                <input id="username" type="text" placeholder="Username" className="
+                <input value={usernameLogin} onChange={handleUsernameLoginChange} id="username-login" type="text" placeholder="Username" className="
                 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline
                 "/>
             </div>
             <div className="mb-6">
-                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="password">
+                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="password-login">
                     Password
                 </label>
-                <input id="password" type="password" placeholder="*********" className="
-                shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline
+                <input value={passwordLogin} onChange={handlePasswordLoginChange} id="password-login" type="password" placeholder="*********" className="
+                shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline
                 "/>
             </div>
-            <div className="flex items-center justify-between">
+
+            <div className="flex items-center justify-between mt-3">
                 <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition duration-200">
                     Sign In
                 </button>

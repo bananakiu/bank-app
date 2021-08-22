@@ -2,7 +2,6 @@ import bgImage from './../../assets/bg-02.jpg'
 import { useState } from 'react';
 import { addAdminAccount } from '../../utils/login';
 import ErrorDisplay from '../common/ErrorDisplay';
-import { list } from 'postcss';
 
 const SignUpPage = ({
     setIsLoginOpen,
