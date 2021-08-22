@@ -31,13 +31,13 @@ const NavBar = ({
 
     return <>
         <nav className="
-        fixed z-50
+        fixed z-10
         flex justify-between items-center
         w-full py-0 
         text-white bg-blue-500
         ">
             <div id="navbar-left" className="flex justify-center items-center">
-                <div id="logo" className="pl-3">
+                <div id="logo" className="pl-3 cursor-pointer" onClick={switchPageTo(`${loggedIn === true ? "accounts" : "login" }`)}> {/* change default home pages */}
                     <img src={bannerLogo} alt="NextBank logo" className="
                     h-10 my-0 mr-4
                     min-w-min

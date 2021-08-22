@@ -72,7 +72,7 @@ const AddAccountModal = ({
     // render
     return <>
         <section className={`
-        h-screen w-full fixed z-10 inset-0 overflow-y-auto
+        h-screen w-full fixed z-20 inset-0 overflow-y-auto
         flex justify-center items-center text-center
         bg-black bg-opacity-50
         ${isAddAccountModalOpen ? "" : "hidden"}
@@ -93,14 +93,14 @@ const AddAccountModal = ({
                     <label>Email</label>
                     <input type="email" value={newEmail} onChange={handleNewEmailChange} required className="form-input rounded-lg"/>
                 </div>
-                <div className="flex flex-col mb-4">
+                {/* <div className="flex flex-col mb-4">
                     <label>Account Type</label>
                     <select value={newAccountType} onChange={handleNewAccountTypeChange} required className="form-select rounded-lg">
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
                     </select> 
-                </div>
+                </div> */}
                 <div className="flex flex-col mb-6">
                     <label>Starting Amount</label>
                     <input type="number" value={newInitialAmount} required onChange={handleNewInitialAmountChange} className="form-input rounded-lg"/>

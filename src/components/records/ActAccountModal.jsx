@@ -76,7 +76,7 @@ const ActAccountModal = ({
     // render
     return <>
         <section className={`
-        h-screen w-full fixed z-10 inset-0 overflow-y-auto
+        h-screen w-full fixed z-20 inset-0 overflow-y-auto
         flex justify-center items-center text-center
         bg-black bg-opacity-50
         `}>
