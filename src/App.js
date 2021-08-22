@@ -51,8 +51,8 @@ const App = () => {
   const [isDashboardOpen, setIsDashboardOpen] = useState(false);
   const [isAccountsOpen, setIsAccountsOpen] = useState(false);
   const [isRecordsOpen, setIsRecordsOpen] = useState(false);
-  const [isLoginOpen, setIsLoginOpen] = useState(false);
-  const [isSignupOpen, setIsSignupOpen] = useState(true);
+  const [isLoginOpen, setIsLoginOpen] = useState(true);
+  const [isSignupOpen, setIsSignupOpen] = useState(false);
 
   // modals
   const [isAddAccountModalOpen, setIsAddAccountModalOpen] = useState(false);

@@ -15,6 +15,6 @@ export const addAdminAccount = (adminAccounts, firstName, lastName, email, usern
 };
 
 // delete admin accounts
-export const deleteAccount = (accounts, email) => {
-    return accounts.filter(account => account.email.toLowerCase() !== email.toLowerCase());
+export const deleteAdminAccount = (adminAccounts, email) => {
+    return adminAccounts.filter(account => account.email.toLowerCase() !== email.toLowerCase());
 };
