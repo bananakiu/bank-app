@@ -1,4 +1,6 @@
+import { useState } from 'react';
 import bannerLogo from './../../assets/banner-logo-white.png';
+import ProfileTab from './ProfileTab';
 
 const NavBar = ({
     isDashboardOpen,
@@ -14,6 +16,10 @@ const NavBar = ({
     loggedIn,
     setLoggedIn,
 }) => {
+    // states
+    const [isProfileTabOpen, setIsProfileTabOpen] = useState(false);
+
+    // handlers
     const switchPageTo = (page) => {
         return () => {
             setIsDashboardOpen(page==="dashboard" ? true : false);
@@ -24,9 +30,9 @@ const NavBar = ({
         }
     }
 
-    const handleLogOutClick = () => {
-        setLoggedIn(false);
-        switchPageTo("login")();
+    const handleProfileClick = () => {
+        setIsProfileTabOpen(!isProfileTabOpen);
+        console.log(isProfileTabOpen);
     }
 
     return <>
@@ -49,12 +55,12 @@ const NavBar = ({
                 h-full
                 ">
                     {!loggedIn && <>
-                        <a className="flex-1 text-lg hover:bg-blue-600 py-4 px-6 transition duration-200 cursor-pointer" onClick={switchPageTo("landing")}>Home</a>
+                        <div className="flex-1 text-lg hover:bg-blue-600 py-4 px-6 transition duration-200 cursor-pointer select-none" onClick={switchPageTo("landing")}>Home</div>
                     </>}
                     {loggedIn && <>
                         {/* <a className="flex-1 text-lg hover:bg-blue-600 py-4 px-6 transition duration-200 cursor-pointer" onClick={switchPageTo("dashboard")}>Dashboard</a> */}
-                        <a className="flex-1 text-lg hover:bg-blue-600 py-4 px-6 transition duration-200 cursor-pointer" onClick={switchPageTo("accounts")}>Accounts</a>
-                        <a className="flex-1 text-lg hover:bg-blue-600 py-4 px-6 transition duration-200 cursor-pointer" onClick={switchPageTo("records")}>Records</a>
+                        <div className="flex-1 text-lg hover:bg-blue-600 py-4 px-6 transition duration-200 cursor-pointer select-none" onClick={switchPageTo("accounts")}>Accounts</div>
+                        <div className="flex-1 text-lg hover:bg-blue-600 py-4 px-6 transition duration-200 cursor-pointer select-none" onClick={switchPageTo("records")}>Records</div>
                     </>}
                 </div>
             </div>
@@ -65,8 +71,8 @@ const NavBar = ({
                     text-center
                     h-full
                     ">
-                        <a className="block text-lg hover:bg-blue-600 py-4 px-6 transition duration-200 cursor-pointer" onClick={switchPageTo("login")}>Log In</a>
-                        <a className="block text-lg hover:bg-blue-600 py-4 px-6 transition duration-200 cursor-pointer" onClick={switchPageTo("signup")}>Sign Up</a>
+                        <div className="block text-lg hover:bg-blue-600 py-4 px-6 transition duration-200 cursor-pointer select-none" onClick={switchPageTo("login")}>Log In</div>
+                        <div className="block text-lg hover:bg-blue-600 py-4 px-6 transition duration-200 cursor-pointer select-none" onClick={switchPageTo("signup")}>Sign Up</div>
                     </div>
                 </>}
                 {loggedIn && <>
@@ -75,14 +81,36 @@ const NavBar = ({
                     text-center
                     h-full
                     ">
-                        <a className="block text-lg hover:bg-blue-600 py-4 px-6 transition duration-200 cursor-pointer" onClick={handleLogOutClick}>Logout</a>
-                        <i className="block fas fa-user-circle text-3xl hover:bg-blue-600 py-3 px-6 transition duration-200 cursor-pointer"></i>
+                        {/* <a className="block text-lg hover:bg-blue-600 py-4 px-6 transition duration-200 cursor-pointer" onClick={handleLogOutClick}>Logout</a> */}
+                        <div onClick={handleProfileClick} 
+                        className="
+                        flex justify-center items-center
+                        hover:bg-blue-600
+                        py-3 px-6
+                        transition duration-200 cursor-pointer
+                        ">
+                            <i className="fas fa-user-circle block text-3xl" onClick={handleProfileClick}></i>
+                            <div className="text-left pl-2">
+                                <h1 className="text-sm select-none">Leandre Noel Kiu</h1>
+                                <h2 className="text-xs select-none">leandrenoelkiu@gmail.com</h2>
+                            </div>
+                        </div>
                     </div>
                 </>}
             </div>
-            
-                
         </nav>
+        {/* navbar profile tab */}
+        {
+            isProfileTabOpen && <ProfileTab
+                setIsProfileTabOpen={setIsProfileTabOpen} 
+                setIsDashboardOpen={setIsDashboardOpen}
+                setIsAccountsOpen={setIsAccountsOpen}
+                setIsRecordsOpen={setIsRecordsOpen}
+                setIsLoginOpen={setIsLoginOpen}
+                setIsSignupOpen={setIsSignupOpen}
+                setLoggedIn={setLoggedIn}
+            />
+        }
     </>
 };
 
