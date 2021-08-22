@@ -1,5 +1,6 @@
 import { deposit } from '../../utils/accounts';
 import Button from '../common/Button';
+import ErrorDisplay from '../common/ErrorDisplay';
 
 const DepositActionPage = ({
     accounts,
@@ -15,6 +16,9 @@ const DepositActionPage = ({
     setRecords,
     recordsIdGenerator,
     setRecordsIdGenerator,
+
+    errors,
+    isErrorDisplayOpen,
 }) => {
     // handlers
     const handleButtonClick = () => {
@@ -44,6 +48,9 @@ const DepositActionPage = ({
             <input value={actDepositAmount} onChange={handleActDepositAmountChange} type="number" id="deposit-amount" required={action==="deposit" ? true : false} className="form-input rounded-lg w-72"/>
         </div>
         
+        {isErrorDisplayOpen &&
+            <ErrorDisplay errors={errors} />
+        }
 
         {/* submit button */}
         <div>

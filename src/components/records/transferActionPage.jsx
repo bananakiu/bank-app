@@ -1,5 +1,7 @@
 import { transfer } from '../../utils/accounts';
 import Button from '../common/Button';
+import ErrorDisplay from '../common/ErrorDisplay';
+
 
 const TransferActionPage = ({
     accounts,
@@ -16,7 +18,10 @@ const TransferActionPage = ({
     actTransferToAccountName,
     setActTransferToAccountName,
     actTransferAmount,
-    setActTransferAmount
+    setActTransferAmount,
+
+    errors,
+    isErrorDisplayOpen,
 }) => {
     // handlers
     const handleButtonClick = () => {
@@ -66,6 +71,11 @@ const TransferActionPage = ({
             <label htmlFor="transfer-amount">Transfer Amount (Php)</label>
             <input value={actTransferAmount} onChange={handleActTransferAmountChange} type="number" id="transfer-amount" required={action==="transfer" ? true : false} className="form-input rounded-lg w-72"/>
         </div>
+
+        {isErrorDisplayOpen &&
+            <ErrorDisplay errors={errors} />
+        }
+
         
         {/* submit button */}
         <div>

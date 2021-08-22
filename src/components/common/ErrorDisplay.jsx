@@ -1,7 +1,7 @@
 const ErrorDisplay = ({
     errors,
 }) => {
-    return <div id="errors-display" className="border-2 rounded-md border-red-600 py-2 px-3 text-red-600 text-left mb-3">
+    return <div id="errors-display" className="border-2 rounded-md border-red-600 py-2 px-3 text-red-600 text-left mb-3 w-full">
         <h1 className="text-lg font-bold">Error</h1>
         <ol className="text-sm text-justify">
             {errors.map((error, index) =>

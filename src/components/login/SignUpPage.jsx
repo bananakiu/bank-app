@@ -65,11 +65,11 @@ const SignUpPage = ({
         if (adminAccounts.filter(account => account.email.toLowerCase() === email.toLowerCase()).length !== 0) {
             listOfErrors.push("Email was already registered previously. Please register with a different one.");
         }
-            // check if username already exists
+        // check if username already exists
         if (adminAccounts.filter(account => account.username.toLowerCase() === username.toLowerCase()).length !== 0) {
             listOfErrors.push("Username was already registered previously. Please register with a different one.");
         }
-            // password and confirmPassword should match
+        // password and confirmPassword should match
         if (password !== confirmPassword) {
             listOfErrors.push("Password and confirm password do not match.");
         }

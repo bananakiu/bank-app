@@ -1,5 +1,6 @@
 import { withdraw } from '../../utils/accounts';
 import Button from '../common/Button';
+import ErrorDisplay from '../common/ErrorDisplay';
 
 const WithdrawActionPage = ({
     accounts,
@@ -14,7 +15,10 @@ const WithdrawActionPage = ({
     actAccountName,
     setActAccountName,
     actWithdrawAmount,
-    setActWithdrawAmount
+    setActWithdrawAmount,
+
+    errors,
+    isErrorDisplayOpen,
 }) => {
     // handlers
     const handleButtonClick = () => {
@@ -38,6 +42,10 @@ const WithdrawActionPage = ({
             <label htmlFor="withdraw-amount">Withdraw Amount (Php)</label>
             <input value={actWithdrawAmount} onChange={handleActWithdrawAmountChange} type="number" id="withdraw-amount" required={action==="withdraw" ? true : false} className="form-input rounded-lg w-72"/>
         </div>
+
+        {isErrorDisplayOpen &&
+            <ErrorDisplay errors={errors} />
+        }
         
         {/* submit button */}
         <div>

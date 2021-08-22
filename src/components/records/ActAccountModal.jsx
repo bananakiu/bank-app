@@ -1,5 +1,4 @@
-import React from 'react';
-import './../../App.css';
+import React, { useState } from 'react';
 
 import DepositActionPage from './DepositActionPage';
 import WithdrawActionPage from './WithdrawActionPage';
@@ -40,6 +39,10 @@ const ActAccountModal = ({
     setIsActAccountModalOpen,
     
 }) => {
+    // states
+    const [errors, setErrors] = useState([]);
+    const [isErrorDisplayOpen, setIsErrorDisplayOpen] = useState(false);
+
     // functions for the form
     const handleDepositTabOnClick = () => {
         setAction("deposit");
@@ -57,21 +60,69 @@ const ActAccountModal = ({
         setActAccountName(e.target.value);
     }
 
-    const handleActAccountSubmit = (event) => {
-        // prevent refresh
-        event.preventDefault();
+    const handleActAccountSubmit = (e) => {
+        e.preventDefault();
+        setIsErrorDisplayOpen(false);
 
-        // reset inputs
-        setActAccountName("");
-        setActTransferToAccountName("");
-        setActDepositAmount(0);
-        setActWithdrawAmount(0);
-        setActTransferAmount(0);
-        setAction("deposit");
-        
-        // close modal
-        setIsActAccountModalOpen(false);
+        // validation
+        let listOfErrors = handleValidation();
+        setErrors(listOfErrors);
+
+        if (listOfErrors.length===0) {
+            // reset inputs
+            setActAccountName("");
+            setActTransferToAccountName("");
+            setActDepositAmount(0);
+            setActWithdrawAmount(0);
+            setActTransferAmount(0);
+            setAction("deposit");
+            
+            // close modal
+            setIsActAccountModalOpen(false);
+        } else {
+            // display errors
+            setIsErrorDisplayOpen(true);
+        }
     }
+
+    const handleValidation =  () => {
+        let listOfErrors = [];
+
+        // check if email belongs to an account that exists
+        if (accounts.filter(account => account.email.toLowerCase() === actAccountName.toLowerCase()).length === 0) {
+            listOfErrors.push("Account does not exist. Please pick an account that exists.");
+        } else {
+            // query account
+            let checkAccount = accounts.filter(account => account.email.toLowerCase() !== actAccountName.toLowerCase())[0]; 
+
+            // check transactions
+            if (action === "deposit") {
+                if (actDepositAmount < 0) {
+                    listOfErrors.push("Deposit amount cannot be negative.");
+                }
+            } else if (action === "withdraw") {
+                if (actWithdrawAmount < 0) {
+                    listOfErrors.push("Withdraw amount cannot be negative.");
+                }
+                if (actWithdrawAmount > checkAccount.balance) {
+                    listOfErrors.push("Cannot withdraw more than account's current balance.")
+                }
+            } else if (action === "transfer") {
+                if (accounts.filter(account => account.email.toLowerCase() === actTransferToAccountName.toLowerCase()).length === 0) {
+                    listOfErrors.push("Account to transfer to does not exist. Please pick an account that exists.");
+                }
+                if (actTransferAmount < 0) {
+                    listOfErrors.push("Transfer amount cannot be negative.");
+                }
+                if (actTransferAmount > checkAccount.balance) {
+                    listOfErrors.push("Cannot transfer more than account's current balance.")
+                }
+            }
+        }
+
+        return listOfErrors;
+    }
+
 
     // render
     return <>
@@ -87,7 +138,7 @@ const ActAccountModal = ({
             bg-white
             w-96 lg:w-5/12
             ">
-                {/* select action type */}
+                <h1 className="text-2xl font-bold mb-4">Add Record</h1>
                 <ul className="
                 flex flex-row justify-stretch items-stretch
                 rounded-lg border-4 border-gray-300
@@ -154,6 +205,9 @@ const ActAccountModal = ({
                         setActAccountName={setActAccountName}
                         actDepositAmount={actDepositAmount}
                         setActDepositAmount={setActDepositAmount}
+
+                        errors={errors}
+                        isErrorDisplayOpen={isErrorDisplayOpen}
                         />
                     }
                     
@@ -172,6 +226,9 @@ const ActAccountModal = ({
                         setActAccountName={setActAccountName}
                         actWithdrawAmount={actWithdrawAmount}
                         setActWithdrawAmount={setActWithdrawAmount}
+
+                        errors={errors}
+                        isErrorDisplayOpen={isErrorDisplayOpen}
                         />
                     }
 
@@ -192,6 +249,9 @@ const ActAccountModal = ({
                         setActTransferToAccountName={setActTransferToAccountName}
                         actTransferAmount={actTransferAmount}
                         setActTransferAmount={setActTransferAmount}
+
+                        errors={errors}
+                        isErrorDisplayOpen={isErrorDisplayOpen}
                         />
                     }
                     
