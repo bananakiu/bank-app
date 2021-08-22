@@ -1,6 +1,6 @@
 // SIGNUP
 // add new admin account
-export const addAccount = (adminAccounts, firstName, lastName, email, username, password) => {
+export const addAdminAccount = (adminAccounts, firstName, lastName, email, username, password) => {
     // push to accounts
     adminAccounts.push(
         {

@@ -1,5 +1,6 @@
 import bgImage from './../../assets/bg-02.jpg'
 import { useState } from 'react';
+import { addAdminAccount } from '../../utils/login';
 
 const SignUpPage = ({
     setIsLoginOpen,
@@ -7,6 +8,8 @@ const SignUpPage = ({
     setIsDashboardOpen,
     setIsAccountsOpen,
     setIsRecordsOpen,
+    adminAccounts,
+    setAdminAccounts,
     loggedIn,
     setLoggedIn,
 }) => {
@@ -18,12 +21,25 @@ const SignUpPage = ({
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
 
+
     // handlers
     const handleSignupSubmit = (e) => {
         e.preventDefault();
 
+        // add new admin account
+        setAdminAccounts(addAdminAccount(adminAccounts, firstName, lastName, email, username, password));
+        console.log(adminAccounts); // ! TEMP
+
+        // empty forms
+        setFirstName("");
+        setLastName("");
+        setEmail("");
+        setUsername("");
+        setPassword("");
+        setConfirmPassword("");
+
         // show accounts page
-        setIsLoginOpen(false);
+        setIsSignupOpen(false);
         setIsAccountsOpen(true);
 
         // set state loggedIn

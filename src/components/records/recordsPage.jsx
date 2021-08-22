@@ -70,7 +70,7 @@ const RecordsPage = ({
             ">
                 {records.length===0 &&
                     <div className="text-gray-400 text-lg mt-16">
-                        <div><i class="far fa-frown"></i></div>
+                        <div><i className="far fa-frown"></i></div>
                         <p> No records here yet.</p>
                     </div>
                 }
