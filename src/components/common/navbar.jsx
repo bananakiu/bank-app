@@ -98,8 +98,8 @@ const NavBar = ({
                             <i className="fas fa-user-circle block text-3xl" onClick={handleProfileClick}></i>
                             <div className="text-left pl-2">
                                 <h1 className="text-sm select-none">
-                                    {adminAccounts.filter(account => account.username.toLowerCase()===loggedInUser.toLowerCase())[0].firstName}
-                                    {adminAccounts.filter(account => account.username.toLowerCase()===loggedInUser.toLowerCase())[0].lastName}
+                                    <span>{adminAccounts.filter(account => account.username.toLowerCase()===loggedInUser.toLowerCase())[0].firstName} </span>
+                                    <span>{adminAccounts.filter(account => account.username.toLowerCase()===loggedInUser.toLowerCase())[0].lastName}</span>
                                 </h1>
                                 <h2 className="text-xs select-none">
                                     {adminAccounts.filter(account => account.username.toLowerCase()===loggedInUser.toLowerCase())[0].email}
