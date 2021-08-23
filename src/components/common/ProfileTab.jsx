@@ -5,6 +5,7 @@ const ProfileTab = ({
     setIsRecordsOpen,
     setIsLoginOpen,
     setIsSignupOpen,
+    setIsLandingOpen,
     setLoggedIn,
     setLoggedInUser,
 }) => {
@@ -16,6 +17,7 @@ const ProfileTab = ({
             setIsRecordsOpen(page==="records" ? true : false);
             setIsLoginOpen(page==="login" ? true : false);
             setIsSignupOpen(page==="signup" ? true : false);
+            setIsLandingOpen(page==="landing" ? true : false);
         }
     }
     const handleLogOutClick = () => {

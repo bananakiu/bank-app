@@ -13,6 +13,8 @@ const NavBar = ({
     setIsLoginOpen,
     isSignupOpen,
     setIsSignupOpen,
+    isLandingOpen,
+    setIsLandingOpen,
     loggedIn,
     setLoggedIn,
     loggedInUser,
@@ -30,6 +32,7 @@ const NavBar = ({
             setIsRecordsOpen(page==="records" ? true : false);
             setIsLoginOpen(page==="login" ? true : false);
             setIsSignupOpen(page==="signup" ? true : false);
+            setIsLandingOpen(page==="landing" ? true : false);
         }
     }
 
@@ -46,7 +49,7 @@ const NavBar = ({
         text-white bg-blue-500
         ">
             <div id="navbar-left" className="flex justify-center items-center">
-                <div id="logo" className="pl-3 cursor-pointer" onClick={switchPageTo(`${loggedIn === true ? "accounts" : "login" }`)}> {/* change default home pages */}
+                <div id="logo" className="pl-3 cursor-pointer" onClick={switchPageTo(`${loggedIn === true ? "accounts" : "landing" }`)}> {/* change default home pages */}
                     <img src={bannerLogo} alt="NextBank logo" className="
                     h-10 my-0 mr-4
                     min-w-min
@@ -116,6 +119,7 @@ const NavBar = ({
                 setIsRecordsOpen={setIsRecordsOpen}
                 setIsLoginOpen={setIsLoginOpen}
                 setIsSignupOpen={setIsSignupOpen}
+                setIsLandingOpen={setIsLandingOpen}
                 setLoggedIn={setLoggedIn}
                 setLoggedInUser={setLoggedInUser}
             />

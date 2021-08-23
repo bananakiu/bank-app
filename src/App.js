@@ -4,6 +4,7 @@ import AccountsPage from './components/accounts/AccountsPage';
 import RecordsPage from './components/records/RecordsPage';
 import LoginPage from './components/login/LoginPage';
 import SignUpPage from './components/login/SignUpPage';
+import LandingPage from './components/login/LandingPage';
 import React, { useEffect, useState } from 'react';
 import './App.css';
 
@@ -67,8 +68,9 @@ const App = () => {
   const [isDashboardOpen, setIsDashboardOpen] = useState(false);
   const [isAccountsOpen, setIsAccountsOpen] = useState(false);
   const [isRecordsOpen, setIsRecordsOpen] = useState(false);
-  const [isLoginOpen, setIsLoginOpen] = useState(true);
+  const [isLoginOpen, setIsLoginOpen] = useState(false);
   const [isSignupOpen, setIsSignupOpen] = useState(false);
+  const [isLandingOpen, setIsLandingOpen] = useState(true);
 
   // modals
   const [isAddAccountModalOpen, setIsAddAccountModalOpen] = useState(false);
@@ -134,6 +136,9 @@ const App = () => {
           isSignupOpen={isSignupOpen}
           setIsSignupOpen={setIsSignupOpen}
 
+          isLandingOpen={isLandingOpen}
+          setIsLandingOpen={setIsLandingOpen}
+
           loggedIn={loggedIn}
           setLoggedIn={setLoggedIn}
 
@@ -188,7 +193,6 @@ const App = () => {
           setActWithdrawAmount={setActWithdrawAmount}
           actTransferAmount={actTransferAmount}
           setActTransferAmount={setActTransferAmount}
-
         />
         }
         {isRecordsOpen &&
@@ -253,6 +257,16 @@ const App = () => {
             setLoggedInUser={setLoggedInUser}
           />
         }
+
+        {isLandingOpen &&
+          <LandingPage
+            setIsLandingOpen={setIsLandingOpen}
+            setIsLoginOpen={setIsLoginOpen}
+            setIsSignupOpen={setIsSignupOpen}
+          />
+        }
+
+        
       </main>
     </>
   );
