@@ -47,9 +47,9 @@ const AddAccountModal = ({
         setNewEmail(e.target.value);
     }
 
-    const handleNewAccountTypeChange = (e) => {
-        setNewAccountType(e.target.value);
-    }
+    // const handleNewAccountTypeChange = (e) => {
+    //     setNewAccountType(e.target.value);
+    // }
 
     const handleNewInitialAmountChange = (e) => {
         setNewInitialAmount(e.target.value);

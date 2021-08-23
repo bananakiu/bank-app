@@ -5,7 +5,6 @@ import WithdrawActionPage from './WithdrawActionPage';
 import TransferActionPage from './TransferActionPage';
 
 import { deposit, withdraw, transfer } from '../../utils/accounts';
-import { isElement } from 'react-dom/cjs/react-dom-test-utils.production.min';
 
 // TODO: x-button to close modal
 // TODO: click out to close modal

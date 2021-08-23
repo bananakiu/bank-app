@@ -19,12 +19,11 @@ const DepositActionPage = ({
     errors,
     isErrorDisplayOpen,
     errorAction,
-}) => {
-    // 
+}) => { 
     // handlers
-    const handleActAccountNameChange = (e) => {
-        setActAccountName(e.target.value);
-    }
+    // const handleActAccountNameChange = (e) => {
+    //     setActAccountName(e.target.value);
+    // }
 
     const handleActDepositAmountChange = (e) => {
         setActDepositAmount(e.target.value);
