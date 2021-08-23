@@ -13,6 +13,8 @@ const SignUpPage = ({
     setAdminAccounts,
     loggedIn,
     setLoggedIn,
+    loggedInUser,
+    setLoggedInUser,
 }) => {
     // form control states
     const [firstName, setFirstName] = useState("");
@@ -52,6 +54,7 @@ const SignUpPage = ({
 
             // set state loggedIn
             setLoggedIn(true);
+            setLoggedInUser(username);
         } else {
             // display errors
             setIsErrorDisplayOpen(true);

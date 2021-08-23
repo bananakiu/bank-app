@@ -12,6 +12,8 @@ const LoginPage = ({
     setAdminAccounts,
     loggedIn,
     setLoggedIn,
+    loggedInUser,
+    setLoggedInUser,
 }) => {
     // form states
     const [usernameLogin, setUsernameLogin] = useState("");
@@ -46,6 +48,7 @@ const LoginPage = ({
 
             // set state loggedIn
             setLoggedIn(true);
+            setLoggedInUser(usernameLogin);
 
             // empty forms
             setUsernameLogin("");

@@ -6,6 +6,7 @@ const ProfileTab = ({
     setIsLoginOpen,
     setIsSignupOpen,
     setLoggedIn,
+    setLoggedInUser,
 }) => {
     // handlers/functions
     const switchPageTo = (page) => {
@@ -19,6 +20,7 @@ const ProfileTab = ({
     }
     const handleLogOutClick = () => {
         setLoggedIn(false);
+        setLoggedInUser("");
         switchPageTo("login")();
         setIsProfileTabOpen(false);
     }

@@ -89,6 +89,7 @@ const App = () => {
 
   // login
   const [loggedIn, setLoggedIn] = useState(false);
+  const [loggedInUser, setLoggedInUser] = useState("");
   
   // local storage
   useEffect(() => {
@@ -135,6 +136,11 @@ const App = () => {
 
           loggedIn={loggedIn}
           setLoggedIn={setLoggedIn}
+
+          loggedInUser={loggedInUser}
+          setLoggedInUser={setLoggedInUser}
+
+          adminAccounts={adminAccounts}
         />
       </header>
       <main className="pt-14">
@@ -227,6 +233,8 @@ const App = () => {
             setAdminAccounts={setAdminAccounts}
             loggedIn={loggedIn}
             setLoggedIn={setLoggedIn}
+            loggedInUser={loggedInUser}
+            setLoggedInUser={setLoggedInUser}
           />
         }
         {isSignupOpen &&
@@ -241,6 +249,8 @@ const App = () => {
             setAdminAccounts={setAdminAccounts}
             loggedIn={loggedIn}
             setLoggedIn={setLoggedIn}
+            loggedInUser={loggedInUser}
+            setLoggedInUser={setLoggedInUser}
           />
         }
       </main>

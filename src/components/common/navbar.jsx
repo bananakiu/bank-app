@@ -15,6 +15,9 @@ const NavBar = ({
     setIsSignupOpen,
     loggedIn,
     setLoggedIn,
+    loggedInUser,
+    setLoggedInUser,
+    adminAccounts
 }) => {
     // states
     const [isProfileTabOpen, setIsProfileTabOpen] = useState(false);
@@ -91,8 +94,13 @@ const NavBar = ({
                         ">
                             <i className="fas fa-user-circle block text-3xl" onClick={handleProfileClick}></i>
                             <div className="text-left pl-2">
-                                <h1 className="text-sm select-none">Leandre Noel Kiu</h1>
-                                <h2 className="text-xs select-none">leandrenoelkiu@gmail.com</h2>
+                                <h1 className="text-sm select-none">
+                                    {adminAccounts.filter(account => account.username.toLowerCase()===loggedInUser.toLowerCase())[0].firstName}
+                                    {adminAccounts.filter(account => account.username.toLowerCase()===loggedInUser.toLowerCase())[0].lastName}
+                                </h1>
+                                <h2 className="text-xs select-none">
+                                    {adminAccounts.filter(account => account.username.toLowerCase()===loggedInUser.toLowerCase())[0].email}
+                                </h2>
                             </div>
                         </div>
                     </div>
@@ -109,6 +117,7 @@ const NavBar = ({
                 setIsLoginOpen={setIsLoginOpen}
                 setIsSignupOpen={setIsSignupOpen}
                 setLoggedIn={setLoggedIn}
+                setLoggedInUser={setLoggedInUser}
             />
         }
     </>
