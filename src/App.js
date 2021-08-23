@@ -4,14 +4,15 @@ import AccountsPage from './components/accounts/AccountsPage';
 import RecordsPage from './components/records/RecordsPage';
 import LoginPage from './components/login/LoginPage';
 import SignUpPage from './components/login/SignUpPage';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.css';
 
 // App
 const App = () => {
   // data
-  const [adminAccounts, setAdminAccounts] = useState(
-    [
+  const [adminAccounts, setAdminAccounts] = useState(() => {
+    const savedValue = JSON.parse(localStorage.getItem("adminAccounts"));
+    const initialValue = [
       {
         firstName: "Jordan",
         lastName: "Belfort",
@@ -20,9 +21,11 @@ const App = () => {
         password: "password",
       }
     ]
-  )
-  const [accounts, setAccounts] = useState(
-    [
+    return savedValue || initialValue;
+  });
+  const [accounts, setAccounts] = useState(() => {
+    const savedValue = JSON.parse(localStorage.getItem("accounts"));
+    const initialValue = [
       {
         id: 0,
         email: "lbj@gmail.com",
@@ -41,11 +44,24 @@ const App = () => {
         name: "Elon Musk",
         balance: 3000000,
       },
-    ]
-  );
-  const [idGenerator, setIdGenerator] = useState(accounts.length);
-  const [records, setRecords] = useState([]);
-  const [recordsIdGenerator, setRecordsIdGenerator] = useState(0);
+    ];
+    return savedValue || initialValue;
+  });
+  const [idGenerator, setIdGenerator] = useState(() => {
+    const savedValue = JSON.parse(localStorage.getItem("idGenerator"));
+    const initialValue = accounts.length;
+    return savedValue || initialValue;
+  });
+  const [records, setRecords] = useState(() => {
+    const savedValue = JSON.parse(localStorage.getItem("records"));
+    const initialValue = [];
+    return savedValue || initialValue;
+  });
+  const [recordsIdGenerator, setRecordsIdGenerator] = useState(() => {
+    const savedValue = JSON.parse(localStorage.getItem("recordsIdGenerator"));
+    const initialValue = 0;
+    return savedValue || initialValue;
+  });
   
   // pages
   const [isDashboardOpen, setIsDashboardOpen] = useState(false);
@@ -74,7 +90,29 @@ const App = () => {
   // login
   const [loggedIn, setLoggedIn] = useState(false);
   
-  // return/render page
+  // local storage
+  useEffect(() => {
+    localStorage.setItem('adminAccounts', JSON.stringify([...adminAccounts]));
+  }, [JSON.stringify(adminAccounts)]);
+
+  useEffect(() => {
+    localStorage.setItem('accounts', JSON.stringify([...accounts]));
+  }, [JSON.stringify(accounts)]);
+
+  useEffect(() => {
+    localStorage.setItem('idGenerator', JSON.stringify(idGenerator));
+  }, [idGenerator]);
+
+  useEffect(() => {
+    localStorage.setItem('records', JSON.stringify([...records]));
+  }, [JSON.stringify(records)]);
+
+  useEffect(() => {
+    localStorage.setItem('recordsIdGenerator', JSON.stringify(recordsIdGenerator));
+  }, [recordsIdGenerator]);
+
+
+  // render page
   return (
     <>
       <header>
