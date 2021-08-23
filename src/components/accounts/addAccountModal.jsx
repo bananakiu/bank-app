@@ -61,6 +61,12 @@ const AddAccountModal = ({
         }
     }
 
+    const handleClickFocus = (e) => {
+        if (e.currentTarget === e.target) {
+            closeModal();
+        }
+    }
+
     const closeModal = () => {
         // reset values
         setNewAccountName("");
@@ -121,12 +127,12 @@ const AddAccountModal = ({
 
     // render
     return <>
-        <section onKeyDown={handleEscDown} tabIndex={0} className={`
+        <section onFocus={handleClickFocus} tabIndex="-1" onKeyDown={handleEscDown} className={`
         h-screen w-full fixed z-20 inset-0 overflow-y-auto
         flex justify-center items-center text-center
         bg-black bg-opacity-50
         `}>
-            <form onSubmit={handleNewAccountSubmit} className="
+            <form onSubmit={handleNewAccountSubmit} tabIndex="-1" className="
             py-4 px-6 mt-8 mb-4 mx-8
             border-gray-150 border-2 rounded-lg
             transition duration-200
