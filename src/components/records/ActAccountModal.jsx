@@ -63,6 +63,26 @@ const ActAccountModal = ({
         setActAccountName(e.target.value);
     }
 
+    const handleEscDown = (e) => {
+        if (e.key === "Escape") {
+            closeModal();
+        }
+    }
+
+    const closeModal = () => {
+        // reset inputs/states
+        setActAccountName("");
+        setActTransferToAccountName("");
+        setActDepositAmount(0);
+        setActWithdrawAmount(0);
+        setActTransferAmount(0);
+        setAction("deposit");
+        setErrorAction("");
+        
+        // close modal
+        setIsActAccountModalOpen(false);
+    }
+
     const handleActAccountSubmit = (e) => {
         e.preventDefault();
         setIsErrorDisplayOpen(false);
@@ -89,18 +109,9 @@ const ActAccountModal = ({
                 setRecords(newRecords);
                 setRecordsIdGenerator(newRecordsIdGenerator);
             }
-
-            // reset inputs/states
-            setActAccountName("");
-            setActTransferToAccountName("");
-            setActDepositAmount(0);
-            setActWithdrawAmount(0);
-            setActTransferAmount(0);
-            setAction("deposit");
-            setErrorAction("");
             
             // close modal
-            setIsActAccountModalOpen(false);
+            closeModal();
         } else {
             // display errors
             setIsErrorDisplayOpen(true);
@@ -149,7 +160,7 @@ const ActAccountModal = ({
 
     // render
     return <>
-        <section className={`
+        <section onKeyDown={handleEscDown} tabIndex={0} className={`
         h-screen w-full fixed z-20 inset-0 overflow-y-auto
         flex justify-center items-center text-center
         bg-black bg-opacity-50
@@ -193,7 +204,7 @@ const ActAccountModal = ({
                     <div className="flex flex-col mb-4">
                         {/* TODO: remove repetitive datalist dropdown icon */}
                         <label htmlFor="action-account">Account</label>
-                        <input
+                        <input autoFocus
                             value={actAccountName}
                             onChange={handleActAccountNameChange}
                             list="action-account-list"

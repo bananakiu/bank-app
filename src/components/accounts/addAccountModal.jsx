@@ -55,6 +55,24 @@ const AddAccountModal = ({
         setNewInitialAmount(e.target.value);
     }
 
+    const handleEscDown = (e) => {
+        if (e.key === "Escape") {
+            closeModal();
+        }
+    }
+
+    const closeModal = () => {
+        // reset values
+        setNewAccountName("");
+        setNewEmail("");
+        setNewAccountType("");
+        setNewInitialAmount(0);
+
+        // close modal
+        setIsAddAccountModalOpen(false);
+        
+    }
+
     const handleNewAccountSubmit = (e) => {
         // prevent refresh
         e.preventDefault();
@@ -72,14 +90,8 @@ const AddAccountModal = ({
             setRecords(newRecords);
             setRecordsIdGenerator(newRecordsIdGenerator);
 
-            // reset values
-            setNewAccountName("");
-            setNewEmail("");
-            setNewAccountType("");
-            setNewInitialAmount(0);
-
             // close modal
-            setIsAddAccountModalOpen(false);
+            closeModal();
 
         } else {
             // display errors
@@ -109,7 +121,7 @@ const AddAccountModal = ({
 
     // render
     return <>
-        <section className={`
+        <section onKeyDown={handleEscDown} tabIndex={0} className={`
         h-screen w-full fixed z-20 inset-0 overflow-y-auto
         flex justify-center items-center text-center
         bg-black bg-opacity-50
@@ -128,7 +140,7 @@ const AddAccountModal = ({
                 }
                 <div className="flex flex-col mb-4">
                     <label>Account Name</label>
-                    <input type="text" value={newAccountName} onChange={handleNewAccountNameChange} required className="form-input rounded-lg"/>
+                    <input autoFocus type="text" value={newAccountName} onChange={handleNewAccountNameChange} required className="form-input rounded-lg"/>
                 </div>
                 <div className="flex flex-col mb-4">
                     <label>Email</label>
