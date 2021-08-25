@@ -25,6 +25,7 @@ const AccountRow = ({
     border-gray-150 border-2 rounded-lg
     hover:shadow-md
     transition duration-200
+    cursor-pointer
     ">
         <div className="font-bold">{name}</div>
         <div>{email}</div>
